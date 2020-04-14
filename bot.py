@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.30.60 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.31.60 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -193,195 +193,195 @@ async def help(ctx,page='1'):
                              value='Responds with a random pickup line!',
                              inline=False
                              )
-        help_embed.add_field(name='rp!hug <user>',
+        help_embed.add_field(name='s!hug <user>',
                              value='Responds with a message telling people that you are hugging them with a random image.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!kiss <user>',
+        help_embed.add_field(name='s!kiss <user>',
                              value='Responds with a message telling people that you are kissing them with a random image.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!pat <user>',
+        help_embed.add_field(name='s!pat <user>',
                              value='Responds with a message telling people that you are patting them with a random image.',
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='1/7')
     elif page == '2':
-        help_embed.add_field(name='rp!facepalm',
+        help_embed.add_field(name='s!facepalm',
                              value='Responds with a message telling people that you are facepalming with a image.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!sigh',
+        help_embed.add_field(name='s!sigh',
                              value='Responds with a message telling people that you are sighing with a image.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!cute <user>',
+        help_embed.add_field(name='s!cute <user>',
                              value='Responds with a message telling people that you are think they are cute with a image.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!sleep | rp!sleepy',
+        help_embed.add_field(name='s!sleep | s!sleepy',
                              value='Responds with a random message and a random GIF or image saying that you are sleepy.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!rps <your choice> | rp!rockpaperscissors <your choice>',
+        help_embed.add_field(name='s!rps <your choice> | s!rockpaperscissors <your choice>',
                              value='Play a game of Rock Paper Scissors with the bot, to choose your option use "Rock", "Paper", "Scissors" or "R", "P", "S". This command is case-insensitive.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!8ball <your question> | rp!8b <your question>',
+        help_embed.add_field(name='s!8ball <your question> | s!8b <your question>',
                              value='Ask the Magic 8 Ball a question and it will answer!',
                              inline=False
                              )
-        help_embed.add_field(name='rp!dice <out of>',
+        help_embed.add_field(name='s!dice <out of>',
                              value='It will generate a random number out of the range you specify, if you do not specify a range the default will be 6',
                              inline=False
                              )
-        help_embed.add_field(name='rp!kill <user> <reason>',
+        help_embed.add_field(name='s!kill <user> <reason>',
                              value='Responds with a random kill message and a random GIF or image with a optional reason.',
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='2/7')
     elif page == '3':
-        help_embed.add_field(name='rp!say <message>',
+        help_embed.add_field(name='s!say <message>',
                              value='Says a message as the bot',
                              inline=False
                              )
-        help_embed.add_field(name='rp!dm <user> <message>',
+        help_embed.add_field(name='s!dm <user> <message>',
                              value='DMs the user as the bot.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!slap <user> <reason>',
+        help_embed.add_field(name='s!slap <user> <reason>',
                              value="Responds with a message that tells the person that you slapped them with a random image and a optional reason.",
                              inline=False
                              )
-        help_embed.add_field(name='rp!punch <user> <reason>',
+        help_embed.add_field(name='s!punch <user> <reason>',
                              value="Responds with a message that tells the person that you punched them with a random image and a optional reason.",
                              inline=False
                              )
-        help_embed.add_field(name='rp!sad <reason> | rp!cry <reason>',
+        help_embed.add_field(name='s!sad <reason> | s!cry <reason>',
                              value='Responds with a random message telling people that you are crying or are sad with a random GIF or image.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!mad <reason> | rp!angry <reason>',
+        help_embed.add_field(name='s!mad <reason> | s!angry <reason>',
                              value='Responds with a random message telling people that you are angry or mad with a random GIF or image.',
                              inline=False
                              )
-        help_embed.add_field(name='rp!ship <user 1> <user 2>',
+        help_embed.add_field(name='s!ship <user 1> <user 2>',
                              value="Responds with a ship name for the 2 mentioned people, I am currently working on a ship image but don't expect that to come anytime soon.",
                              inline=False
                              )
-        help_embed.add_field(name='rp!steal <user> <item>',
+        help_embed.add_field(name='s!steal <user> <item>',
                              value="Responds with a message telling the person you mentioned that you are stealing the item you mentioned from him/her!",
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='3/7')
     elif page == '4':
-        help_embed.add_field(name='rp!punish <user> <reason>',
+        help_embed.add_field(name='s!punish <user> <reason>',
                              value="Responds with a message telling everyonethat you are punishing the user you mentioned with a optional reason!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!insult <user> <reason>',
+        help_embed.add_field(name='s!insult <user> <reason>',
                              value="Responds with a message telling everyone that you are insulting the user you mentioned with a optional reason!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!highfive <user> | rp!hf <user>',
+        help_embed.add_field(name='s!highfive <user> | s!hf <user>',
                              value="Responds with a message telling everyone that you are high-fiving the user you mentioned!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!chatkilled <user> | rp!ck <user>',
+        help_embed.add_field(name='s!chatkilled <user> | s!ck <user>',
                              value="Responds with a message telling everyone that the chat was killed with a optional user!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!flipacoin | rp!fac',
+        help_embed.add_field(name='s!flipacoin | s!fac',
                              value="Responds with heads or tails!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!goodjob <user> <reason> | rp!gj <user> <reason>',
+        help_embed.add_field(name='s!goodjob <user> <reason> | s!gj <user> <reason>',
                              value="Responds with a message telling everyone that you are congratualating the user you mentioned for doing a good job with a optional reason!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!agree <user>',
+        help_embed.add_field(name='s!agree <user>',
                              value="Responds with a message telling everyone that you agree with a optional person that you agree with!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!give <user> <item>>',
+        help_embed.add_field(name='s!give <user> <item>>',
                              value="Responds with a message telling everyone that you are giving the user you mentioned a item!",
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='4/7')
     elif page == '5':
-        help_embed.add_field(name='rp!invite',
+        help_embed.add_field(name='s!invite',
                              value="Responds with a message with the invite to the server!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!x <user> | rp!doubt <user>',
+        help_embed.add_field(name='s!x <user> | s!doubt <user>',
                              value="Responds with a message telling everyone to spam x to doubt with a optional user!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!f <user> | rp!respects <user>',
+        help_embed.add_field(name='s!f <user> | s!respects <user>',
                              value="Responds with a message telling everyone to press f to pay respects with a optional user!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!hb <user> | rp!happybirthday <user> | rp!birthday <user>',
+        help_embed.add_field(name='s!hb <user> | s!happybirthday <user> | s!birthday <user>',
                              value="Responds with a message wishing the user you mentioned a happy birthday!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!boredom | rp!bored | rp!boredom.exe',
+        help_embed.add_field(name='s!boredom | s!bored | s!boredom.exe',
                              value="Responds with a message telling everyone that you are bored with a random message!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!thinking | rp!think | rp!thinking.exe',
+        help_embed.add_field(name='s!thinking | s!think | s!thinking.exe',
                              value="Responds with a message telling everyone that you are thinking with a random message and a random image!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!oof <user>',
+        help_embed.add_field(name='s!oof <user>',
                              value="Responds with a message telling everyone that you or a optional user you mentioned oofed!",
                              inline=False
                              )
-        help_embed.add_field(name='rp!serverinfo',
+        help_embed.add_field(name='s!serverinfo',
                              value="Responds with a message telling you various information about the server!",
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='5/7')
     elif page == '6':
-        help_embed.add_field(name='rp!hangman',
+        help_embed.add_field(name='s!hangman',
                              value='Play a game of hangman!',
                              inline=False)
         help_embed.add_field(
-            name='rp!uc <number> <unit of number> <target unit> | rp!unitconvert <number> <unit of number> <target unit>',
+            name='s!uc <number> <unit of number> <target unit> | s!unitconvert <number> <unit of number> <target unit>',
             value="Convert from a one unit to another!",
             inline=False)
         help_embed.add_field(
-            name='rp!numguess <lives> <max> | rp!numberguess <lives> <max> | rp!ng <lives> <max>',
+            name='s!numguess <lives> <max> | s!numberguess <lives> <max> | s!ng <lives> <max>',
             value="Play a number guessing game. The max number is default 100 if not specified!",
             inline=False)
         help_embed.add_field(
-            name='rp!ciz <timezone> | rp!currentinzone <timezone>',
+            name='s!ciz <timezone> | s!currentinzone <timezone>',
             value="Show the current time and date in the timezone specified, you can use UTC, GMT, and the abbreviation for the timezone.",
             inline=False)
         help_embed.add_field(
-            name='rp!cfz <hour> <minute> <original timezone> <target timezone> | rp!convertfromzone <hour> <minute> <original timezone> <target timezone>',
+            name='s!cfz <hour> <minute> <original timezone> <target timezone> | s!convertfromzone <hour> <minute> <original timezone> <target timezone>',
             value="Converts the time from the timezone specified to the target timezone, if the timezone has multiple word, put quotation marks on both sides of the timezone." +
                   " Make sure you enter the time in 24 hour format. You can use UTC, GMT, and the abbreviation for the timezone.",
             inline=False)
         help_embed.add_field(
-            name='rp!google <text>',
+            name='s!google <text>',
             value="Googles the text specified and returns the first result, with an option to return up to 5 results",
             inline=False)
-        help_embed.add_field(name='rp!translate <phrase>',
+        help_embed.add_field(name='s!translate <phrase>',
                              value='Translates the phrase into english!',
                              inline=False
                              )
-        help_embed.add_field(name='rp!translateto <language> <phrase>',
+        help_embed.add_field(name='s!translateto <language> <phrase>',
                              value='Translates the phrase into the language you specified!',
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='6/7')
     elif page == '7':
-        help_embed.add_field(name='rp!translatefrom <language> <phrase>',
+        help_embed.add_field(name='s!translatefrom <language> <phrase>',
                              value='Translates the phrase from the language you specified!',
                              inline=False
                              )
-        help_embed.add_field(name='rp!backwardsname <user> | rp!backname <user> | rp!bn <user>',
+        help_embed.add_field(name='s!backwardsname <user> | s!backname <user> | s!bn <user>',
                              value="Shows the mentioned user's name backwards! If you don't mention a user, it'll show your own name backwards.",
                              inline=False
                              )
