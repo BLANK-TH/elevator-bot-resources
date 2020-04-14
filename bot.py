@@ -7,7 +7,7 @@ from random import choice,randint
 import asyncio
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.1.2.2 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.1.3.2 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -27,7 +27,7 @@ async def on_message(message):
     if len(message.embeds) >= 1:
         for em in message.embeds:
             try:
-                if 'is now level' in em.title.lower() or 'level' in em.description.lower():
+                if 'is now level' in em.title.lower() or 'is now level' in em.description.lower():
                     embed = discord.Embed(
                         description="STFU POKECORD!",
                         colour=hc
