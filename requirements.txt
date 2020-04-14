@@ -1,1 +1,8 @@
 discord.py
+random-word
+PyDictionary
+unit-converter
+arrow
+google
+beautifulsoup4
+googletrans
