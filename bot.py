@@ -7,11 +7,12 @@ from random import choice,randint
 import asyncio
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.1.0.0 Developed By: Kanade Tachibana"
-game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','Use s!help to see my commands!'])
+df = "Elevator Server Bot Ver.1.0.1 Developed By: Kanade Tachibana"
+game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
 
+@client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=discord.Game('Developed by Kanade Tachibana'))
     change_game.start()
