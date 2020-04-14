@@ -7,7 +7,7 @@ from random import choice,randint
 import asyncio
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.1.0.1 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.1.0.2 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -79,7 +79,11 @@ async def help(ctx,page='1'):
                              value='Responds the mentioned users profile picture!',
                              inline=False
                              )
-        #5 more
+        help_embed.add_field(name='s!mock <phrase>',
+                             value='Responds with your phrase in weird capitalization!',
+                             inline=False
+                             )
+        #4 more
         help_embed.add_field(name='Page Number', value='1/1')
     else:
         error_embed = discord.Embed(title='Invalid Page Number',colour=discord.Colour.red())
@@ -133,6 +137,65 @@ async def mock(ctx,*,phrase:str):
     embed.set_image(url='https://i.imgur.com/qDhQKQb.gif')
     if 'theodore' in phrase.lower() or 'kanade' in phrase.lower():
         embed.set_image(url='https://nationalpostcom.files.wordpress.com/2019/06/flip-2.png?w=780')
+
+    await ctx.message.channel.send(embed=embed)
+
+@client.command(aliases=['pickup','pickupline','pl'])
+async def _pickuplines(ctx):
+    lines = [
+        'Hey did you hear about the restaurant on the moon? The food was great but it had no atmosphere. -Jasmine',
+        "If i was a gardener, I'd put our tu-lips together. -Jasmine",
+        "I'm sorry, were you talking to me? (No) Well then, please start :) - Megan",
+        "I'm not a photographer but I can picture me and you together - Megan",
+        "Did your licenses get suspended for driving these guys/girls crazy? - Megan",
+        "If you were words on a page, it'd be fine print - Megan",
+        "Do you believe in love at first sight or should I walk past you again? -Jasmine",
+        "Are you a bank loan? Because you've got my interest. -Jasmine",
+        "Are you an alien? Because there's nothing like you on Earth (This can technically be an insult but whtevr) - Megan",
+        "If nothing lasts forever, will you be my nothing? - Megan",
+        "Hey you're pretty and I'm cute, together we'd be pretty cute ;) - Megan",
+        "Did you just come out of the oven because WOO you're hot - Megan",
+        "Are you a dictionary? Because you add meaning to my life - Megan",
+        "Can I follow you home? Because my parents told me to always follow my dreams - Megan",
+        "Feel my shirt. It's made of boyfriend/girlfriend material - Megan",
+        "What's on this menu? Me 'N' U - Megan",
+        "If I could change one thing about you it'd be to..... change your last name - Megan",
+        "Are you my phone charger? Because I'd die without you - Megan",
+        "Thank god I brought my library card! Because I am totally checking you out - Megan",
+        "I'm studying to become a historian. I'm especially interested in a date (The only history joke I'd ever use) - Megan",
+        "Could you please grab my arm so I can tell my friends I've been touched my an angel? - Megan",
+        "There must be something wrong with my eyes because I can't take my eyes off you - Megan",
+        "Do you have an extra heart? Because you just stole mine :( - Megan",
+        "Whoever said Disney Land is the happiest place on Earth. H A H A clearly they haven't stood beside you - Megan",
+        "Is there an airport near by or is my heart taking off - Megan",
+        "I must be in a museum because you're a work of art ! - Megan",
+        "Hi, I'm Microsoft. Can I crash at your place tonight? - Megan",
+        "Did you invent the airplane? Because you seem just Wright - Megan",
+        "Are you religious? Because you're the answer to all my prayers - Megan",
+        "Can I tie your shoes? Because I don't want you falling for anyone else - Megan',"
+        "If I can rearrange the alphabet, I'd put U and I together <3 - Megan",
+        "Are you a magician because whenever I look at you, you make everyone else disappear! - Megan",
+        "I'm lost, can you give me directions to your heart? - Megan",
+        "Are you a magnet? Because you're attracting me from over -here!! - Megan",
+        "HELP MY PHONES NOT WORKING! IT DOESN'T HAVE YOUR NUMBER - Megan",
+        "Are you a camera? Because I smile at you whenever I see you - Megan",
+        "Are you a parking ticket because you got fine written all over you - Megan",
+        "CALL THE COPS! IT'S A CRIME TO STEAL MY HEART - Megan",
+        "Are you French? Because Eiffel for you - Megan",
+        "Is your dad a boxer? Because you're a knockout! - Megan",
+        "I seem to have lost my number, may i have yours? - Megan",
+        "Is it hot in here? Or is it just you.",
+        "Are you Google? Because you are all I've been searching for - Megan",
+        "Are you a phaser from Star Trek? Because you're set to stun - Megan"
+    ]
+    line = choice(lines)
+    embed = discord.Embed(
+        title=f"{ctx.message.author.name} here is your pickup line.",
+        description=line,
+        colour=hc
+    )
+    embed.set_footer(text=df)
+    embed.set_image(url='https://g2x4w9d4.stackpathcdn.com/wp-content/uploads/2017/02/cheesy.gif')
 
     await ctx.message.channel.send(embed=embed)
 
