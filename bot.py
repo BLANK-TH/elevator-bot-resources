@@ -7,7 +7,7 @@ from random import choice,randint
 import asyncio
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.1.0.2 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.1.1.2 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -83,7 +83,11 @@ async def help(ctx,page='1'):
                              value='Responds with your phrase in weird capitalization!',
                              inline=False
                              )
-        #4 more
+        help_embed.add_field(name='s!pickupline | s!pl | s!pickup',
+                             value='Responds with a random pickup line!',
+                             inline=False
+                             )
+        #3 more
         help_embed.add_field(name='Page Number', value='1/1')
     else:
         error_embed = discord.Embed(title='Invalid Page Number',colour=discord.Colour.red())
