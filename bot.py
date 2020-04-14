@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.31.60 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.31.61 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -960,7 +960,7 @@ async def give(ctx,user: discord.Member,*,item):
     g_embed.set_image(url=rgi)
     await ctx.message.channel.send(embed=g_embed)
 
-client.command()
+@client.command()
 async def invite(ctx):
     #put invite here
     invite = 'https://discord.gg/Cr43nuF'
