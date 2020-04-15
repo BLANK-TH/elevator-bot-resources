@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.67 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.68 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -186,6 +186,7 @@ async def on_message(message):
                 colour=hc
             )
             embed.add_field(name="Number You Entered:",value=str(cur_num))
+            embed.add_field(name="Number You Should Have Entered:",value=str(current_count[0] + 1))
             embed.add_field(name="Current Number:",value=str(current_count[0]))
             embed.add_field(name="Your User ID:",value=str(message.author.id))
             embed.add_field(name="Current User ID:",value=str(current_count[1]))
