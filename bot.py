@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.68 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.69 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -420,6 +420,10 @@ async def help(ctx,page='1'):
                              )
         help_embed.add_field(name='s!purge <number> | s!prune <number>',
                              value="Erases the given number of messages, this command can only be used by people with the manage messages permissions",
+                             inline=False
+                             )
+        help_embed.add_field(name='s!latency',
+                             value='Responds with the current latency between HEARTBEAT and a HEARTBEAT_ACK in milliseconds.',
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='7/7')
@@ -1641,5 +1645,17 @@ async def fastspam(ctx,num:int,*,message):
     await ctx.message.delete()
     for x in range(0,num):
         await ctx.message.channel.send(message)
+
+@client.command()
+async def latency(ctx):
+    current_ping = round(client.latency * 1000)
+    embed = discord.Embed(
+        title="Here is the current ping for the Elevator Server Bot",
+        colour=hc
+    )
+    embed.set_footer(text=df)
+    embed.add_field(name="Ping:",value=str(current_ping) + 'ms')
+
+    await ctx.message.channel.send(embed=embed)
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
