@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.34.61 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.61 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -1590,7 +1590,7 @@ async def _purge(ctx,number="None"):
 
 @client.command()
 async def spam(ctx,num:int,*,message):
-    if not message.author.id == 616032766974361640:
+    if not ctx.message.author.id == 616032766974361640:
         msg = await ctx.message.channel.send("The spam command can only be used by the bot owner a.k.a. **NOT YOU**")
         await msg.delete(delay=30)
         return
@@ -1601,7 +1601,7 @@ async def spam(ctx,num:int,*,message):
 
 @client.command()
 async def fastspam(ctx,num:int,*,message):
-    if not message.author.id == 616032766974361640:
+    if not ctx.message.author.id == 616032766974361640:
         msg = await ctx.message.channel.send("The spam command can only be used by the bot owner a.k.a. **NOT YOU**")
         await msg.delete(delay=30)
         return
