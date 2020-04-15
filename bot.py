@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.65 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.66 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -179,7 +179,7 @@ async def on_message(message):
         global current_count
         if current_count is None:
             current_count = (cur_num - 1,None)
-        if current_count[0] >= cur_num or current_count[1] == message.author.id:
+        if cur_num > current_count[0] + 1 or current_count[1] == message.author.id:
             await message.delete()
             embed = discord.Embed(
                 title="Please don't count by yourself or skip ahead!",
