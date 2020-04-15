@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.63 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.64 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -166,6 +166,7 @@ async def on_message(message):
         try:
             int(message.content)
         except:
+            await message.delete()
             embed = discord.Embed(
                 title="Please don't chat here, this channel is for counting only.",
                 colour=hc
