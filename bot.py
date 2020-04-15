@@ -14,10 +14,11 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.64 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.65 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
+current_count = None
 LANGUAGES = {
     'af': 'afrikaans',
     'sq': 'albanian',
@@ -164,7 +165,7 @@ async def on_message(message):
         await msg.delete(delay=30)
     if message.channel.id == 689077082609025089 and not message.author.bot:
         try:
-            int(message.content)
+            cur_num = int(message.content)
         except:
             await message.delete()
             embed = discord.Embed(
@@ -174,6 +175,21 @@ async def on_message(message):
             embed.set_footer(text=df)
             msg = await message.channel.send(embed=embed)
             await msg.delete(delay=5)
+            return
+        global current_count
+        if current_count is None:
+            current_count = (cur_num - 1,None)
+        if current_count[0] >= cur_num or current_count[1] == message.author.id:
+            await message.delete()
+            embed = discord.Embed(
+                title="Please don't count by yourself or skip ahead!",
+                colour=hc
+            )
+            embed.set_footer(text=df)
+            msg = await message.channel.send(embed=embed)
+            await msg.delete(delay=5)
+        else:
+            current_count = (cur_num,message.author.id)
     await client.process_commands(message)
 
 @client.command()
