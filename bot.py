@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.70 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.71 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -1669,5 +1669,6 @@ async def setcounting(ctx,num:int,user:discord.Member):
         return
     global current_count
     current_count = (num,user.id)
+    await ctx.message.channel.send("Counting Position Updated!")
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
