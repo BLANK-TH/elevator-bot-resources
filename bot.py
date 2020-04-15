@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.31.61 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.32.61 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -383,6 +383,10 @@ async def help(ctx,page='1'):
                              )
         help_embed.add_field(name='s!backwardsname <user> | s!backname <user> | s!bn <user>',
                              value="Shows the mentioned user's name backwards! If you don't mention a user, it'll show your own name backwards.",
+                             inline=False
+                             )
+        help_embed.add_field(name='s!purge <number> | s!prune <number>',
+                             value="Erases the given number of messages, this command can only be used by people with the manage messages permissions",
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='7/7')
@@ -1556,5 +1560,32 @@ async def _backwardsname(ctx,*,user:discord.Member="None"):
     embed.set_footer(text=df)
 
     await ctx.message.channel.send(embed=embed)
+
+@client.command(aliases=['purge','prune'])
+@commands.has_permissions(manage_messages=True)
+async def _purge(ctx,number="None"):
+    if number == "None":
+        embed = discord.Embed(title="Please enter a number!",colour=discord.Colour.red())
+        embed.set_image(url='https://i.imgur.com/XgqWMei.jpg')
+        embed.set_footer(text=df)
+    elif number != "None":
+        try:
+            num = int(number)
+            con = True
+        except ValueError as e:
+            embed = discord.Embed(title="Please enter a number!", colour=discord.Colour.red())
+            embed.set_image(url='https://i.imgur.com/XgqWMei.jpg')
+            embed.add_field(name="Error:", value=str(e))
+            embed.set_footer(text=df)
+            con = False
+        if con:
+            await ctx.message.delete()
+            await ctx.message.channel.purge(limit=num)
+            embed = discord.Embed(title="Purge Success!", colour=discord.Colour.green())
+            embed.add_field(name="Number of Messages",value=number)
+            embed.add_field(name="Command Author",value=ctx.message.author.display_name)
+            embed.set_footer(text=df)
+    message = await ctx.message.channel.send(embed=embed)
+    await message.delete(delay=7)
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
