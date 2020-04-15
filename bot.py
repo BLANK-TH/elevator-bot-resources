@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.33.61 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.34.61 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -1595,19 +1595,6 @@ async def spam(ctx,num:int,*,message):
         await msg.delete(delay=30)
         return
     await ctx.message.delete()
-    log_channel = client.get_channel(681612436293419021)
-    embed = discord.Embed(
-        title="Someone used the spam command!",
-        colour=hc
-    )
-    embed.add_field(name="Command Author Name:", value=ctx.message.author.display_name)
-    embed.add_field(name="Command Author ID:", value=ctx.message.author.id)
-    embed.add_field(name="Channel Used In:", value=ctx.message.channel.name)
-    embed.add_field(name="Number of Messages:", value=str(num))
-    embed.add_field(name="Message:", value=message)
-    embed.set_footer(text=df)
-    await log_channel.send(embed=embed)
-
     for x in range(0,num):
         await ctx.message.channel.send(message)
         await asyncio.sleep(0.9)
@@ -1619,19 +1606,6 @@ async def fastspam(ctx,num:int,*,message):
         await msg.delete(delay=30)
         return
     await ctx.message.delete()
-    log_channel = client.get_channel(681612436293419021)
-    embed = discord.Embed(
-        title="Someone used the spam command!",
-        colour=hc
-    )
-    embed.add_field(name="Command Author Name:", value=ctx.message.author.display_name)
-    embed.add_field(name="Command Author ID:", value=ctx.message.author.id)
-    embed.add_field(name="Channel Used In:", value=ctx.message.channel.name)
-    embed.add_field(name="Number of Messages:", value=str(num))
-    embed.add_field(name="Message:", value=message)
-    embed.set_footer(text=df)
-    await log_channel.send(embed=embed)
-
     for x in range(0,num):
         await ctx.message.channel.send(message)
 
