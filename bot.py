@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.72 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.73 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -438,7 +438,10 @@ async def help(ctx,page='1'):
                              value='Responds with a message telling people that you are staring at them and a GIF.',
                              inline=False
                              )
-        #one more
+        help_embed.add_field(name='s!rankthot <user>',
+                             value='Responds with a message that says how much of a thot you are.',
+                             inline=False
+                             )
         help_embed.add_field(name='Page Number', value='7/7')
     else:
         error_embed = discord.Embed(title='Invalid Page Number',colour=discord.Colour.red())
@@ -1707,5 +1710,39 @@ async def stare(ctx,*,user:discord.Member='themselves?!?'):
     s_embed.set_image(url='https://i.ibb.co/XpNb1s9/stare.gif')
 
     await ctx.message.channel.send(embed=s_embed)
+
+@client.command()
+async def rankthot(ctx,*,user:discord.Member=None):
+    if user is None:
+        user = ctx.message.author
+    if user.id == 616032766974361640:
+        thot_level = 0
+    elif user.id == 639960189377708047 or user.id == 514835126220226580:
+        thot_level = 100
+    else:
+        thot_level = randint(0,100)
+    title = "Thotties be thotting"
+    message = f"{user.display_name} is **{str(thot_level)}%**"
+    if thot_level >= 75:
+        embed = discord.Embed(
+            title=title,
+            description=message,
+            colour=discord.Colour.red()
+        )
+    elif thot_level >= 50:
+        embed = discord.Embed(
+            title=title,
+            description=message,
+            colour=discord.Colour.gold()
+        )
+    else:
+        embed = discord.Embed(
+            title=title,
+            description=message,
+            colour=discord.Colour.red()
+        )
+    embed.set_footer(text=df)
+
+    await ctx.message.channel.send(embed=embed)
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
