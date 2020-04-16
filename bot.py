@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.71 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.72 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -430,6 +430,15 @@ async def help(ctx,page='1'):
                              value='Set the current counting position. Can only be used by bot owner.',
                              inline=False
                              )
+        help_embed.add_field(name='s!laugh',
+                             value='Responds with a message telling people that you are laughing and a random GIF or image.',
+                             inline=False
+                             )
+        help_embed.add_field(name='s!stare <user>',
+                             value='Responds with a message telling people that you are staring at them and a GIF.',
+                             inline=False
+                             )
+        #one more
         help_embed.add_field(name='Page Number', value='7/7')
     else:
         error_embed = discord.Embed(title='Invalid Page Number',colour=discord.Colour.red())
@@ -1670,5 +1679,33 @@ async def setcounting(ctx,num:int,user:discord.Member):
     global current_count
     current_count = (num,user.id)
     await ctx.message.channel.send("Counting Position Updated!")
+
+
+@client.command()
+async def laugh(ctx):
+    random_laugh_gif = ['https://i.imgur.com/hfBNc9K.jpg',
+                        'https://i.imgur.com/wmpKu8K.jpg',
+                        'https://i.imgur.com/Fc6Rpu7.gif'
+                        ]
+    lg = choice(random_laugh_gif)
+    l_embed = discord.Embed(
+        title=f'{ctx.message.author.display_name} is laughing!',
+        colour=hc
+    )
+    l_embed.set_footer(text=df)
+    l_embed.set_image(url=lg)
+
+    await ctx.message.channel.send(embed=l_embed)
+
+@client.command()
+async def stare(ctx,*,user:discord.Member='themselves?!?'):
+    s_embed = discord.Embed(
+        title=f'{ctx.message.author.display_name} is staring at {user.display_name}!',
+        colour=hc
+    )
+    s_embed.set_footer(text=df)
+    s_embed.set_image(url='https://i.ibb.co/XpNb1s9/stare.gif')
+
+    await ctx.message.channel.send(embed=s_embed)
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
