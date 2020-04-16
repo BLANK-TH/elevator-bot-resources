@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.74 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.35.75 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -1717,7 +1717,7 @@ async def rankthot(ctx,*,user:discord.Member=None):
         user = ctx.message.author
     if user.id == 616032766974361640:
         thot_level = 0
-    elif user.id == 639960189377708047 or user.id == 514835126220226580:
+    elif user.id == 639960189377708047 or user.id == 514835126220226580 or user.id == 429504383529517056:
         thot_level = 100
     else:
         thot_level = randint(0,100)
