@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.36.76 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.36.77 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -444,7 +444,7 @@ async def help(ctx,page='1'):
                              )
         help_embed.add_field(name='Page Number', value='7/8')
     elif page == '8':
-        help_embed.add_field(name="rp!deathbattle <user>",
+        help_embed.add_field(name="s!deathbattle <user>",
                              value="Have a battle to the death with the user you mentioned!",
                              inline=False
                              )
