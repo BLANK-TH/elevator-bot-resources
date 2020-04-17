@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.35.76 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.36.76 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -238,7 +238,7 @@ async def help(ctx,page='1'):
                              value='Responds with a message telling people that you are patting them with a random image.',
                              inline=False
                              )
-        help_embed.add_field(name='Page Number', value='1/7')
+        help_embed.add_field(name='Page Number', value='1/8')
     elif page == '2':
         help_embed.add_field(name='s!facepalm',
                              value='Responds with a message telling people that you are facepalming with a image.',
@@ -272,7 +272,7 @@ async def help(ctx,page='1'):
                              value='Responds with a random kill message and a random GIF or image with a optional reason.',
                              inline=False
                              )
-        help_embed.add_field(name='Page Number', value='2/7')
+        help_embed.add_field(name='Page Number', value='2/8')
     elif page == '3':
         help_embed.add_field(name='s!say <message>',
                              value='Says a message as the bot',
@@ -306,7 +306,7 @@ async def help(ctx,page='1'):
                              value="Responds with a message telling the person you mentioned that you are stealing the item you mentioned from him/her!",
                              inline=False
                              )
-        help_embed.add_field(name='Page Number', value='3/7')
+        help_embed.add_field(name='Page Number', value='3/8')
     elif page == '4':
         help_embed.add_field(name='s!punish <user> <reason>',
                              value="Responds with a message telling everyonethat you are punishing the user you mentioned with a optional reason!",
@@ -340,7 +340,7 @@ async def help(ctx,page='1'):
                              value="Responds with a message telling everyone that you are giving the user you mentioned a item!",
                              inline=False
                              )
-        help_embed.add_field(name='Page Number', value='4/7')
+        help_embed.add_field(name='Page Number', value='4/8')
     elif page == '5':
         help_embed.add_field(name='s!invite',
                              value="Responds with a message with the invite to the server!",
@@ -374,7 +374,7 @@ async def help(ctx,page='1'):
                              value="Responds with a message telling you various information about the server!",
                              inline=False
                              )
-        help_embed.add_field(name='Page Number', value='5/7')
+        help_embed.add_field(name='Page Number', value='5/8')
     elif page == '6':
         help_embed.add_field(name='s!hangman',
                              value='Play a game of hangman!',
@@ -408,7 +408,7 @@ async def help(ctx,page='1'):
                              value='Translates the phrase into the language you specified!',
                              inline=False
                              )
-        help_embed.add_field(name='Page Number', value='6/7')
+        help_embed.add_field(name='Page Number', value='6/8')
     elif page == '7':
         help_embed.add_field(name='s!translatefrom <language> <phrase>',
                              value='Translates the phrase from the language you specified!',
@@ -442,7 +442,13 @@ async def help(ctx,page='1'):
                              value='Responds with a message that says how much of a thot you are.',
                              inline=False
                              )
-        help_embed.add_field(name='Page Number', value='7/7')
+        help_embed.add_field(name='Page Number', value='7/8')
+    elif page == '8':
+        help_embed.add_field(name="rp!deathbattle <user>",
+                             value="Have a battle to the death with the user you mentioned!",
+                             inline=False
+                             )
+        help_embed.add_field(name='Page Number', value='8/8')
     else:
         error_embed = discord.Embed(title='Invalid Page Number',colour=discord.Colour.red())
         error_embed.set_image(url='https://i.imgur.com/XgqWMei.jpg')
@@ -1744,5 +1750,112 @@ async def rankthot(ctx,*,user:discord.Member=None):
     embed.set_footer(text=df)
 
     await ctx.message.channel.send(embed=embed)
+
+@client.command()
+async def deathbattle(ctx,user:discord.Member):
+    p1tup = (ctx.message.author.display_name, 100)
+    p2tup = (user.display_name, 100)
+    turn = 1
+    embed = discord.Embed(
+        title="Deathbattle Time!!!",
+        description=f"Deathbattle between {ctx.message.author.display_name} and {user.display_name}!",
+        colour=discord.Colour.blue()
+    )
+    embed.set_footer(text=df)
+    embed.add_field(name=p1tup[0],value=f"{str(p1tup[1])}/100")
+    embed.add_field(name=p2tup[0], value=f"{str(p2tup[1])}/100")
+    show_msg = await ctx.message.channel.send(embed=embed)
+    # make sure in responses, the person who is hitting is first, victim is second, damage is third
+    responses = [
+        "__{}__ shocks __{}__ with lightning for __{}__ dmg!",
+        "__{}__ explodes a bomb on __{}__ for __{}__ dmg!",
+        "__{}__ explodes a nuclear bomb on __{}__ for __{}__ dmg!",
+        "__{}__ runs over __{}__ with a car for __{}__ dmg!",
+        "__{}__ runs over __{}__ with a truck for __{}__ dmg!",
+        "__{}__ assigns a echelon to kill __{}__, you manage to get away but suffer __{}__ dmg!",
+        "__{}__ shoots __{}__ with a AR for __{}__ dmg!",
+        "__{}__ shoots __{}__ with a HG for __{}__ dmg!",
+        "__{}__ shoots __{}__ with a MG for __{}__ dmg!",
+        "__{}__ shoots __{}__ with a RF for __{}__ dmg!",
+        "__{}__ shoots __{}__ with a SG for __{}__ dmg!",
+        "__{}__ shoots __{}__ with a SMG for __{}__ dmg!",
+        "__{}__ slices __{}__ with a sword for __{}__ dmg!",
+        "__{}__ hits __{}__ with a whip for __{}__ dmg!",
+        "__{}__ slaps __{}__ for __{}__ dmg!",
+        "__{}__ punches __{}__ for __{}__ dmg!",
+        "__{}__ smacks __{}__ with a chair for __{}__ dmg!",
+        "__{}__ stabs __{}__ with knife for __{}__ dmg!",
+        "__{}__ bonks __{}__ with a bat for __{}__ dmg!",
+        "__{}__ tortures __{}__ for __{}__ dmg!",
+        "__{}__ karate chops __{}__ for __{}__ dmg!",
+        "__{}__ kicks __{}__ for __{}__ dmg!",
+        "__{}__ burns __{}__ for __{}__ dmg!",
+        "__{}__ smacks __{}__ with a hammer for __{}__ dmg!",
+        "__{}__ fires a torpedo at __{}__ for __{}__ dmg!"
+    ]
+    past_responses = []
+    def check_win(p1life,p2life):
+        if p1life <= 0:
+            return 2
+        if p2life <= 0:
+            return 1
+        return 0
+    def cur_stat(p1tup,p2tup,turn,dmg):
+        temp_msg = choice(responses)
+        if turn == 1:
+            past_responses.append("<:deathbattleright:700815518193680434> " + temp_msg.format(f"**{p1tup[0]}**",f"**{p2tup[0]}**",f"**{str(dmg)}**"))
+            if len(past_responses) > 3:
+                del past_responses[0]
+            msg = '\n'.join(x for x in past_responses)
+            embed = discord.Embed(
+                description=msg,
+                colour=discord.Colour.green()
+            )
+        else:
+            past_responses.append("<:deathbattleleft:700815578499121183> " + temp_msg.format(f"**{p2tup[0]}**",f"**{p1tup[0]}**",f"**{str(dmg)}**"))
+            if len(past_responses) > 3:
+                del past_responses[0]
+            msg = '\n'.join(x for x in past_responses)
+            embed = discord.Embed(
+                description=msg,
+                colour=discord.Colour.red()
+            )
+        embed.set_footer(text=df)
+        embed.add_field(name=f"{p1tup[0]}:",value=str(p1tup[1]))
+        embed.add_field(name=f"{p2tup[0]}:",value=str(p2tup[1]))
+        past_responses.append(past_responses.pop().replace("**",""))
+        return (embed,dmg)
+    await asyncio.sleep(1.8)
+
+    while check_win(p1tup[1],p2tup[1]) == 0:
+        dmg = randint(0, 35)
+        if turn == 1:
+            p2tup = (p2tup[0],p2tup[1]-dmg)
+        else:
+            p1tup = (p1tup[0], p1tup[1] - dmg)
+        stat = cur_stat(p1tup, p2tup, turn,dmg)
+        await show_msg.edit(embed=stat[0])
+        if turn == 1:
+            turn = 2
+        else:
+            turn = 1
+        await asyncio.sleep(2.3)
+
+    if check_win(p1tup[1],p2tup[1]) == 1:
+        winner = p1tup[0]
+    else:
+        winner = p2tup[0]
+    past_responses.append(f"🏆 {winner} has won!")
+    if len(past_responses) > 3:
+        del past_responses[0]
+    msg = '\n'.join(x for x in past_responses)
+    embed = discord.Embed(
+        description=msg,
+        colour=discord.Colour.gold()
+    )
+    embed.set_footer(text=df)
+    embed.add_field(name=f"{p1tup[0]}:", value=str(p1tup[1]))
+    embed.add_field(name=f"{p2tup[0]}:", value=str(p2tup[1]))
+    await show_msg.edit(embed=embed)
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
