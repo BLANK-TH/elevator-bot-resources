@@ -14,7 +14,7 @@ import arrow
 import typing
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.36.77 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.13.36.78 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 client.remove_command('help')
@@ -1791,7 +1791,11 @@ async def deathbattle(ctx,user:discord.Member):
         "__{}__ kicks __{}__ for __{}__ dmg!",
         "__{}__ burns __{}__ for __{}__ dmg!",
         "__{}__ smacks __{}__ with a hammer for __{}__ dmg!",
-        "__{}__ fires a torpedo at __{}__ for __{}__ dmg!"
+        "__{}__ fires a torpedo at __{}__ for __{}__ dmg!",
+        "__{}__ fires a canonball at __{}__ and dealt __{}__ dmg!",
+        "__{}__ smacks __{}__ on the head with a ban and dealt __{}__ dmg!",
+        "__{}__ casts the stupefy charm on __{}__ and dealt __{}__ dmg!",
+        "__{}__ casts the expelliarmus charm on __{}__ and dealt __{}__ dmg!"
     ]
     past_responses = []
     def check_win(p1life,p2life):
