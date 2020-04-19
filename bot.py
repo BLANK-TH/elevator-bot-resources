@@ -12,11 +12,15 @@ from googletrans import Translator
 import asyncio
 import arrow
 import typing
+import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.13.36.78 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.36.78 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
+pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
+pastebin_user_key = '33868e180241dca1b863695603b73fc6'
+pastebin_url = 'https://pastebin.com/api/api_post.php'
 client.remove_command('help')
 current_count = None
 LANGUAGES = {
@@ -448,6 +452,16 @@ async def help(ctx,page='1'):
                              value="Have a battle to the death with the user you mentioned!",
                              inline=False
                              )
+        help_embed.add_field(name='rp!userinfo <user>',
+                             value="Responds with a message telling you various information about the user you mentioned!",
+                             inline=False
+                             )
+        help_embed.add_field(name='rp!outsideuserinfo <user id>',
+                             value="Responds with a message telling you various information about the user you mentioned! "
+                                   "This is different from the `userinfo` command because this can be used on anyone not "
+                                   "just people in the server.",
+                             inline=False
+                             )
         help_embed.add_field(name='Page Number', value='8/8')
     else:
         error_embed = discord.Embed(title='Invalid Page Number',colour=discord.Colour.red())
@@ -470,7 +484,7 @@ async def _avatar(ctx, member: discord.Member='None'):
     if member == "None":
         member = ctx.message.author
     a_embed = discord.Embed(
-        title=f"{member.display_name}'s Avatar/Profile Picture",
+        description=f"{member.mention}'s Avatar/Profile Picture",
         colour=hc
     )
     a_embed.set_footer(text=df)
@@ -564,7 +578,7 @@ async def _pickuplines(ctx):
     await ctx.message.channel.send(embed=embed)
 
 @client.command()
-async def hug(ctx,users:commands.Greedy[discord.User]):
+async def hug(ctx,users:commands.Greedy[discord.Member]):
     random_hug_image_gif = ['https://i.imgur.com/FICmRtv.jpg',
                             'https://i.imgur.com/Ourqcvo.jpg',
                             'https://i.imgur.com/QIWmEhg.jpg',
@@ -575,13 +589,13 @@ async def hug(ctx,users:commands.Greedy[discord.User]):
                             'https://i.imgur.com/m8DXSgw.jpg'
                             ]
     rhi = choice(random_hug_image_gif)
-    user = ', '.join(x.display_name for x in users)
+    user = ', '.join(x.mention for x in users)
     if user != ctx.message.author.display_name and len(users) >= 1:
-        msg = f'{ctx.message.author.display_name} has hugged {user}'
+        msg = f'{ctx.message.author.mention} has hugged {user}'
     else:
-        msg = f'{ctx.message.author.display_name} is hugging themselves?'
+        msg = f'{ctx.message.author.mention} is hugging themselves?'
     a_embed = discord.Embed(
-        title=msg,
+        description=msg,
         colour=hc
     )
     a_embed.set_footer(text=df)
@@ -590,19 +604,19 @@ async def hug(ctx,users:commands.Greedy[discord.User]):
     await ctx.message.channel.send(embed=a_embed)
 
 @client.command()
-async def kiss(ctx,users:commands.Greedy[discord.User]):
+async def kiss(ctx,users:commands.Greedy[discord.Member]):
     random_kiss_image_gif = ['https://i.imgur.com/0CUZcy1.jpg',
                              'https://i.imgur.com/Bo6FcYk.jpg',
                              'https://i.imgur.com/Gc9eUHC.jpg'
                              ]
     rki = choice(random_kiss_image_gif)
-    user = ', '.join(x.display_name for x in users)
+    user = ', '.join(x.mention for x in users)
     if user != ctx.message.author.display_name and len(users) >= 1:
-        msg = f'{ctx.message.author.display_name} has kissed {user}'
+        msg = f'{ctx.message.author.mention} has kissed {user}'
     else:
-        msg = f'{ctx.message.author.display_name} is kissing themselves?'
+        msg = f'{ctx.message.author.mention} is kissing themselves?'
     k_embed = discord.Embed(
-        title=msg,
+        description=msg,
         colour=hc
     )
     k_embed.set_footer(text=df)
@@ -611,7 +625,7 @@ async def kiss(ctx,users:commands.Greedy[discord.User]):
     await ctx.message.channel.send(embed=k_embed)
 
 @client.command()
-async def pat(ctx,users:commands.Greedy[discord.User]):
+async def pat(ctx,users:commands.Greedy[discord.Member]):
     random_pats_image_gif = ['https://i.imgur.com/pUfhIEx.jpg',
                              'https://i.imgur.com/6IEORJr.jpg',
                              'https://i.imgur.com/26Deeck.jpg',
@@ -620,13 +634,13 @@ async def pat(ctx,users:commands.Greedy[discord.User]):
                              'https://i.imgur.com/4t3drCT.jpg'
                              ]
     rpi = choice(random_pats_image_gif)
-    user = ', '.join(x.display_name for x in users)
+    user = ', '.join(x.mention for x in users)
     if user != ctx.message.author.display_name and len(users) >= 1:
-        msg = f'{ctx.message.author.display_name} is patting {user}!'
+        msg = f'{ctx.message.author.mention} is patting {user}!'
     else:
-        msg = f'{ctx.message.author.display_name} is patting themselves?'
+        msg = f'{ctx.message.author.mention} is patting themselves?'
     p_embed = discord.Embed(
-        title=msg,
+        description=msg,
         colour=hc
     )
     p_embed.set_footer(text=df)
@@ -637,7 +651,7 @@ async def pat(ctx,users:commands.Greedy[discord.User]):
 @client.command()
 async def facepalm(ctx):
     f_embed = discord.Embed(
-        title=f'{ctx.message.author.display_name} is facepalming!',
+        description=f'{ctx.message.author.mention} is facepalming!',
         colour=hc
     )
     f_embed.set_footer(text=df)
@@ -648,13 +662,26 @@ async def facepalm(ctx):
 @client.command()
 async def sigh(ctx):
     s_embed = discord.Embed(
-        title=f'{ctx.message.author.display_name} has sighed!',
+        description=f'{ctx.message.author.mention} has sighed!',
         colour=hc
     )
     s_embed.set_footer(text=df)
     s_embed.set_image(url='https://i.imgur.com/JWeTHLT.jpg')
 
     await ctx.message.channel.send(embed=s_embed)
+
+@client.command(pass_context=True, aliases=['pfp','profile','avatar'])
+async def _avatar(ctx, member: discord.Member='None'):
+    if member == "None":
+        member = ctx.message.author
+    a_embed = discord.Embed(
+        description=f"{member.mention}'s Avatar/Profile Picture",
+        colour=hc
+    )
+    a_embed.set_footer(text=df)
+    a_embed.set_image(url=f'{member.avatar_url}')
+
+    await ctx.message.channel.send(embed=a_embed)
 
 @client.command()
 async def cute(ctx,*,user:discord.Member='empty'):
@@ -677,11 +704,11 @@ async def cute(ctx,*,user:discord.Member='empty'):
                              ]
     rci = choice(random_cute_image_gif)
     if user != 'empty':
-        msg = f'{ctx.message.author.display_name} thinks that {user.display_name} is cute!'
+        msg = f'{ctx.message.author.mention} thinks that {user.mention} is cute!'
     else:
-        msg = f'{ctx.message.author.display_name} is calling themselves cute?'
+        msg = f'{ctx.message.author.mention} is calling themselves cute?'
     c_embed = discord.Embed(
-        title=msg,
+        description=msg,
         colour=hc
     )
     c_embed.set_footer(text=df)
@@ -778,17 +805,17 @@ async def dice(ctx,out_of='6'):
 
 @client.command(pass_context=True)
 async def kill(ctx,user:discord.Member,*,reason='None'):
-    random_kill_message = [f'{ctx.message.author.display_name} has killed {user.display_name}',
-                           f'{ctx.message.author.display_name} has headshotted {user.display_name}',
-                           f'{user.display_name} was shot by {ctx.message.author.display_name}']
+    random_kill_message = [f'{ctx.message.author.mention} has killed {user.mention}',
+                           f'{ctx.message.author.mention} has headshotted {user.mention}',
+                           f'{user.mention} was shot by {ctx.message.author.mention}']
     random_kill_gif = ['https://i.imgur.com/qflLsJu.gif',
                        'https://i.imgur.com/Za8sxpF.gif',
-                       'https://i.ibb.co/bsYTnQ4/killgif2.gif'
+                       'https://i.imgur.com/yWyiUnk.gif'
                        ]
     km = choice(random_kill_message)
     kg = choice(random_kill_gif)
     k_embed = discord.Embed(
-        title=km,
+        description=km,
         colour=hc
     )
     k_embed.set_footer(text=df)
@@ -814,7 +841,7 @@ async def slap(ctx,user:discord.Member,*,reason="None"):
     ]
     rsi = choice(random_slap_image_gif)
     c_embed = discord.Embed(
-        title=f'{ctx.message.author.display_name} has slapped {user.display_name}!',
+        description=f'{ctx.message.author.mention} has slapped {user.mention}!',
         colour=hc
     )
     c_embed.set_footer(text=df)
@@ -831,7 +858,7 @@ async def punch(ctx,user:discord.Member,*,reason='None'):
     ]
     rpi = choice(random_punch_image_gif)
     p_embed = discord.Embed(
-        title=f'{ctx.message.author.display_name} has punched {user.display_name}!',
+        description=f'{ctx.message.author.mention} has punched {user.mention}!',
         colour=hc
     )
     p_embed.set_footer(text=df)
@@ -840,6 +867,20 @@ async def punch(ctx,user:discord.Member,*,reason='None'):
         p_embed.add_field(name="Reason:",value=reason)
 
     await ctx.message.channel.send(embed=p_embed)
+
+@client.command(aliases=['sco','suggestcommand'])
+async def _suggestcommand(ctx,*,command):
+    embed = discord.Embed(title="New Command Suggestion!",colour=hc)
+    embed.set_footer(text=df)
+    embed.add_field(name='Command Name',value=command)
+    embed.add_field(name='Requester', value=ctx.message.author)
+    log_channel = client.get_channel(683760960820740132)
+    await log_channel.send(embed=embed)
+    confirm_embed = discord.Embed(title="Command Suggestion Succeeded!",description='A Staff Member will review it shortly.',colour=discord.Colour.green())
+    confirm_embed.add_field(name='Command Name', value=command)
+    confirm_embed.add_field(name='Requester', value=ctx.message.author)
+    confirm_embed.set_footer(text=df)
+    await ctx.message.channel.send(embed=confirm_embed)
 
 @client.command(aliases=['cry','sad'])
 async def _crysad(ctx,*,reason="None"):
@@ -853,14 +894,14 @@ async def _crysad(ctx,*,reason="None"):
                             'https://i.imgur.com/sM6SvUm.jpg',
                             'https://i.imgur.com/ceHRXvU.jpg'
     ]
-    random_cry_sad_message = [f"{ctx.message.author.display_name} is sad!",
-                              f"{ctx.message.author.display_name} is crying!",
-                              f"{ctx.message.author.display_name} is sad! Someone go hug him/her!",
-                              f"{ctx.message.author.display_name} is crying! Someone go hug him/her!"
+    random_cry_sad_message = [f"{ctx.message.author.mention} is sad!",
+                              f"{ctx.message.author.mention} is crying!",
+                              f"{ctx.message.author.mention} is sad! Someone go hug him/her!",
+                              f"{ctx.message.author.mention} is crying! Someone go hug him/her!"
     ]
     rcsi = choice(random_cry_sad_image)
     rcsm = choice(random_cry_sad_message)
-    embed = discord.Embed(title=rcsm,colour=hc)
+    embed = discord.Embed(description=rcsm,colour=hc)
     embed.set_image(url=rcsi)
     embed.set_footer(text=df)
     if reason != "None":
@@ -873,16 +914,16 @@ async def _angry(ctx,*,reason="None"):
                           'https://i.imgur.com/lrXbqIq.jpg',
                           'https://i.imgur.com/xCZ8qEr.png'
     ]
-    random_angry_message = [f"{ctx.message.author.display_name} is mad!",
-                              f"{ctx.message.author.display_name} is angry!",
-                              f"{ctx.message.author.display_name} is mad! Don't piss him/her off more",
-                              f"{ctx.message.author.display_name} is angry! Someone go hug him/her!",
-                              f"{ctx.message.author.display_name} is mad! Tread lightly",
-                              f"{ctx.message.author.display_name} is angry! Tread lightly!"
+    random_angry_message = [f"{ctx.message.author.mention} is mad!",
+                              f"{ctx.message.author.mention} is angry!",
+                              f"{ctx.message.author.mention} is mad! Don't piss him/her off more",
+                              f"{ctx.message.author.mention} is angry! Someone go hug him/her!",
+                              f"{ctx.message.author.mention} is mad! Tread lightly",
+                              f"{ctx.message.author.mention} is angry! Tread lightly!"
     ]
     rai = choice(random_angry_image)
     ram = choice(random_angry_message)
-    embed = discord.Embed(title=ram,colour=hc)
+    embed = discord.Embed(description=ram,colour=hc)
     embed.set_image(url=rai)
     embed.set_footer(text=df)
     if reason != "None":
@@ -898,7 +939,7 @@ async def ship(ctx,user1: discord.Member,user2: discord.Member):
     ship_name = u1 + u2
     ship_embed = discord.Embed(
         title=ship_name,
-        description=f"{user1.display_name} and {user2.display_name}'s Ship Name",
+        description=f"{user1.mention} and {user2.mention}'s Ship Name",
         colour=hc
     )
     ship_embed.set_footer(text=df)
@@ -906,14 +947,14 @@ async def ship(ctx,user1: discord.Member,user2: discord.Member):
 
 @client.command()
 async def steal(ctx,user: discord.Member,*,item):
-    random_steal_message = [f"{ctx.message.author.display_name} has stolen {item} from {user.display_name}!",
-                            f"{ctx.message.author.display_name} has taken {item} from {user.display_name}!",
-                            f"{user.display_name}'s {item} is missing! It seems {ctx.message.author.display_name} has taken it!",
-                            f"{ctx.message.author.display_name} really likes {user.display_name}'s {item} so he/she took it!"
+    random_steal_message = [f"{ctx.message.author.mention} has stolen {item} from {user.mention}!",
+                            f"{ctx.message.author.mention} has taken {item} from {user.mention}!",
+                            f"{user.mention}'s {item} is missing! It seems {ctx.message.author.mention} has taken it!",
+                            f"{ctx.message.author.mention} really likes {user.mention}'s {item} so he/she took it!"
                             ]
     rsm = choice(random_steal_message)
     s_embed = discord.Embed(
-        title=rsm,
+        description=rsm,
         colour=hc
     )
     s_embed.set_footer(text=df)
@@ -923,7 +964,7 @@ async def steal(ctx,user: discord.Member,*,item):
 @client.command()
 async def punish(ctx,user: discord.Member,*,reason="None"):
     p_embed = discord.Embed(
-        title=f"{ctx.message.author.display_name} has punished {user.display_name}!",
+        description=f"{ctx.message.author.mention} has punished {user.mention}!",
         colour=hc
     )
     p_embed.set_footer(text=df)
@@ -936,13 +977,13 @@ async def punish(ctx,user: discord.Member,*,reason="None"):
 @client.command()
 async def insult(ctx,user:discord.Member,*,reason="None"):
     random_embed_message = [
-        f"{ctx.message.author.display_name} has insulted {user.display_name}!",
-        f"{ctx.message.author.display_name} has insulted {user.display_name}, what a savage!",
-        f"{user.display_name} has been insulted by {ctx.message.author.display_name}!"
+        f"{ctx.message.author.mention} has insulted {user.mention}!",
+        f"{ctx.message.author.mention} has insulted {user.mention}, what a savage!",
+        f"{user.mention} has been insulted by {ctx.message.author.mention}!"
     ]
     rem = choice(random_embed_message)
     i_embed = discord.Embed(
-        title=rem,
+        description=rem,
         colour=hc
     )
     i_embed.set_image(url='https://i.imgur.com/uaz7WXM.jpg')
@@ -954,7 +995,7 @@ async def insult(ctx,user:discord.Member,*,reason="None"):
 @client.command(aliases=['hf','highfive'])
 async def _highfive(ctx,user:discord.Member):
     h_embed = discord.Embed(
-        title=f"{ctx.message.author.display_name} has high-fived {user.display_name}",
+        description=f"{ctx.message.author.mention} has high-fived {user.mention}",
         colour=hc
     )
     h_embed.set_image(url='https://i.imgur.com/CBdjdbi.jpg')
@@ -965,11 +1006,11 @@ async def _highfive(ctx,user:discord.Member):
 @client.command(aliases=['chatkilled','ck'])
 async def _chatkilled(ctx,user:discord.Member="None"):
     if user != "None":
-        msg = f"{ctx.message.author.display_name} thinks {user.display_name} has killed the chat! Someone revive it!"
+        msg = f"{ctx.message.author.mention} thinks {user.mention} has killed the chat! Someone revive it!"
     else:
-        msg = f"{ctx.message.author.display_name} thinks the chat has been killed. Someone revive it!"
+        msg = f"{ctx.message.author.mention} thinks the chat has been killed. Someone revive it!"
     c_embed = discord.Embed(
-        title=msg,
+        description=msg,
         colour=hc
     )
     c_embed.set_footer(text=df)
@@ -996,11 +1037,11 @@ async def _flipacoin(ctx):
 @client.command()
 async def agree(ctx,user:discord.Member="None"):
     if user != "None":
-        msg = f"{ctx.message.author.display_name} agrees with what {user.display_name} said!"
+        msg = f"{ctx.message.author.mention} agrees with what {user.mention} said!"
     else:
-        msg = f"{ctx.message.author.display_name} agrees with what was said!"
+        msg = f"{ctx.message.author.mention} agrees with what was said!"
     a_embed = discord.Embed(
-        title=msg,
+        description=msg,
         colour=hc
     )
     a_embed.set_footer(text=df)
@@ -1016,7 +1057,7 @@ async def give(ctx,user: discord.Member,*,item):
                             ]
     rgi = choice(random_give_image)
     g_embed = discord.Embed(
-        title=f"{ctx.message.author.display_name} has given {item} to {user.display_name}",
+        descritpion=f"{ctx.message.author.mention} has given {item} to {user.mention}",
         colour=hc
     )
     g_embed.set_footer(text=df)
@@ -1039,14 +1080,14 @@ async def invite(ctx):
 @client.command(aliases=['goodjob','gj'])
 async def _goodjob(ctx,user:discord.Member,*,reason="None"):
     random_goodjob_message = [
-        f"{ctx.message.author.display_name} thinks {user.display_name} did a good job!",
-        f"{ctx.message.author.display_name} is congratulating {user.display_name} for doing a good job!",
-        f"{user.display_name} is getting praised by {ctx.message.author.display_name} for doing a good job!"
+        f"{ctx.message.author.mention} thinks {user.mention} did a good job!",
+        f"{ctx.message.author.mention} is congratulating {user.mention} for doing a good job!",
+        f"{user.mention} is getting praised by {ctx.message.author.mention} for doing a good job!"
     ]
     rgjm = choice(random_goodjob_message)
 
     g_embed = discord.Embed(
-        title=rgjm,
+        description=rgjm,
         colour=hc
     )
     g_embed.set_footer(text=df)
@@ -1064,11 +1105,11 @@ async def _f(ctx,user:discord.Member="None"):
     ]
     rfi = choice(random_f_image)
     if user != "None":
-        msg = f"Press F to pay respects to {user.display_name}"
+        msg = f"Press F to pay respects to {user.mention}"
     else:
         msg = "Press F to pay respects!"
     f_embed = discord.Embed(
-        title=msg,
+        description=msg,
         colour=hc
     )
     f_embed.set_footer(text=df)
@@ -1084,11 +1125,11 @@ async def _x(ctx,user:discord.Member="None"):
     ]
     rxi = choice(random_x_image)
     if user != "None":
-        msg = f"Spam X to doubt {user.display_name}!"
+        msg = f"Spam X to doubt {user.mention}!"
     else:
         msg = "Spam X to doubt!"
     x_embed = discord.Embed(
-        title=msg,
+        description=msg,
         colour=hc
     )
     x_embed.set_footer(text=df)
@@ -1105,7 +1146,7 @@ async def _happybirthday(ctx,user:discord.Member):
     ]
     rbi = choice(random_birthday_image)
     b_embed = discord.Embed(
-        title=f"{ctx.message.author.display_name} wishes a happy birthday to {user.display_name}",
+        description=f"{ctx.message.author.mention} wishes a happy birthday to {user.mention}",
         colour=hc
     )
     b_embed.set_footer(text=df)
@@ -1116,13 +1157,13 @@ async def _happybirthday(ctx,user:discord.Member):
 @client.command(aliases=['boredom','bored','boredom.exe'])
 async def _boredom(ctx):
     random_boredom_message = [
-        f'{ctx.message.author.display_name} is bored!',
-        f'{ctx.message.author.display_name} has started the process boredom.exe!',
-        f'{ctx.message.author.display_name} is bored! Someone RP with him/her!'
+        f'{ctx.message.author.mention} is bored!',
+        f'{ctx.message.author.mention} has started the process boredom.exe!',
+        f'{ctx.message.author.mention} is bored! Someone RP with him/her!'
     ]
     rbm = choice(random_boredom_message)
     b_embed = discord.Embed(
-        title=rbm,
+        description=rbm,
         colour=hc
     )
     b_embed.set_footer(text=df)
@@ -1133,8 +1174,8 @@ async def _boredom(ctx):
 @client.command(aliases=['thinking','think','thinking.exe'])
 async def _thinking(ctx):
     random_thinking_message = [
-        f'{ctx.message.author.display_name} is thinking!',
-        f'{ctx.message.author.display_name} has started the process thinking.exe!',
+        f'{ctx.message.author.mention} is thinking!',
+        f'{ctx.message.author.mention} has started the process thinking.exe!',
     ]
     random_thinking_image = [
         'https://i.imgur.com/tgUNcwr.jpg',
@@ -1144,7 +1185,7 @@ async def _thinking(ctx):
     rtm = choice(random_thinking_message)
     rti = choice(random_thinking_image)
     t_embed = discord.Embed(
-        title=rtm,
+        description=rtm,
         colour=hc
     )
     t_embed.set_footer(text=df)
@@ -1155,12 +1196,12 @@ async def _thinking(ctx):
 @client.command()
 async def oof(ctx,user: discord.Member="None"):
     random_oof_message = [
-        f'{ctx.message.author.display_name} got oofed!',
-        f'{ctx.message.author.display_name} had a oof moment!',
+        f'{ctx.message.author.mention} got oofed!',
+        f'{ctx.message.author.mention} had a oof moment!',
     ]
     if user != "None":
-        random_oof_message.append(f'{ctx.message.author.display_name} thinks {user.display_name} had a oof moment!')
-        random_oof_message.append(f'{ctx.message.author.display_name} has oofed {user.display_name}!')
+        random_oof_message.append(f'{ctx.message.author.mention} thinks {user.mention} had a oof moment!')
+        random_oof_message.append(f'{ctx.message.author.mention} has oofed {user.mention}!')
     random_oof_image = [
         'https://i.imgur.com/x4nl4Le.jpg',
         'https://i.imgur.com/yDyG5YY.jpg',
@@ -1169,7 +1210,7 @@ async def oof(ctx,user: discord.Member="None"):
     rom = choice(random_oof_message)
     roi = choice(random_oof_image)
     o_embed = discord.Embed(
-        title=rom,
+        descriptione=rom,
         colour=hc
     )
     o_embed.set_footer(text=df)
@@ -1180,33 +1221,40 @@ async def oof(ctx,user: discord.Member="None"):
 @client.command()
 async def serverinfo(ctx):
     guild = ctx.author.guild
-    roles = ""
-    counter = 0
-    for x in guild.roles:
-        name = x.name
-        if not counter == len(guild.roles) - 1:
-            roles += name + ", "
-        else:
-            roles += name
-        counter += 1
     creation_time = guild.created_at
     creation_time = creation_time.strftime("%Y-%m-%d %H:%M UTC")
-
+    channels = [f"Channels of {guild.name}:"]
+    roles = []
+    for x in guild.channels:
+        channels.append(x.name)
+    for x in guild.roles:
+        roles.append(x.name)
+    roles.append(f"Roles of {guild.name}:")
+    roles = roles.reverse()
+    channel_msg = '\n'.join(x for x in channels)
+    role_msg = '\n'.join(x for x in roles)
+    channel_params = {'api_dev_key': pastebin_api_key, 'api_option': 'paste',
+                      'api_paste_code':channel_msg,'api_paste_name':f"{guild.name}'s Channels",'api_paste_private':0,
+                      "api_user_key":pastebin_user_key,"api_paste_expire_date":'1H'}
+    role_params = {'api_dev_key': pastebin_api_key, 'api_option': 'paste',
+                   'api_paste_code':role_msg,'api_paste_name':f"{guild.name}'s Roles",'api_paste_private':0,
+                   "api_user_key":pastebin_user_key,"api_paste_expire_date":'1H'}
+    channel_url = requests.post(pastebin_url,data=channel_params).text
+    role_url = requests.post(pastebin_url,data=role_params).text
     i_embed = discord.Embed(
         title=f"Server Info for {guild.name}",
         colour=hc
     )
     i_embed.set_footer(text=df)
+    i_embed.set_thumbnail(url=guild.icon_url)
     i_embed.add_field(name="Name:",value=guild.name)
     i_embed.add_field(name="Region:", value=str(guild.region))
     i_embed.add_field(name="ID:", value=guild.id)
     i_embed.add_field(name="Owner:", value=guild.owner.display_name)
     i_embed.add_field(name="Member Count:", value=guild.member_count)
     i_embed.add_field(name="Creation Time:", value=creation_time)
-    if len(roles) > 1000:
-        i_embed.add_field(name="Roles:",value="There are too many roles to be displayed in this message.")
-    else:
-        i_embed.add_field(name="Roles:", value=roles)
+    i_embed.add_field(name="Channels (Expires in 1 Hour):",value=channel_url)
+    i_embed.add_field(name="Roles (Expires in 1 Hour):",value=role_url)
 
     await ctx.message.channel.send(embed=i_embed)
 
@@ -1698,7 +1746,7 @@ async def laugh(ctx):
                         ]
     lg = choice(random_laugh_gif)
     l_embed = discord.Embed(
-        title=f'{ctx.message.author.display_name} is laughing!',
+        description=f'{ctx.message.author.mention} is laughing!',
         colour=hc
     )
     l_embed.set_footer(text=df)
@@ -1709,7 +1757,7 @@ async def laugh(ctx):
 @client.command()
 async def stare(ctx,*,user:discord.Member='themselves?!?'):
     s_embed = discord.Embed(
-        title=f'{ctx.message.author.display_name} is staring at {user.display_name}!',
+        description=f'{ctx.message.author.mention} is staring at {user.mention}!',
         colour=hc
     )
     s_embed.set_footer(text=df)
@@ -1728,7 +1776,7 @@ async def rankthot(ctx,*,user:discord.Member=None):
     else:
         thot_level = randint(0,100)
     title = "Thotties be thotting"
-    message = f"{user.display_name} is **{str(thot_level)}%**"
+    message = f"{user.mention} is **{str(thot_level)}%**"
     if thot_level >= 75:
         embed = discord.Embed(
             title=title,
@@ -1751,14 +1799,14 @@ async def rankthot(ctx,*,user:discord.Member=None):
 
     await ctx.message.channel.send(embed=embed)
 
-@client.command()
+
 async def deathbattle(ctx,user:discord.Member):
     p1tup = (ctx.message.author.display_name, 100)
     p2tup = (user.display_name, 100)
     turn = 1
     embed = discord.Embed(
         title="Deathbattle Time!!!",
-        description=f"Deathbattle between {ctx.message.author.display_name} and {user.display_name}!",
+        description=f"Deathbattle between {ctx.message.author.mention} and {user.mention}!",
         colour=discord.Colour.blue()
     )
     embed.set_footer(text=df)
@@ -1861,5 +1909,64 @@ async def deathbattle(ctx,user:discord.Member):
     embed.add_field(name=f"{p1tup[0]}:", value=str(p1tup[1]))
     embed.add_field(name=f"{p2tup[0]}:", value=str(p2tup[1]))
     await show_msg.edit(embed=embed)
+
+@client.command()
+async def userinfo(ctx,*,user:discord.Member):
+    embed = discord.Embed(
+        description=user.mention,
+        colour=hc
+    )
+    embed.set_thumbnail(url=user.avatar_url)
+    embed.set_author(name=user.name + '#' + user.discriminator,icon_url=user.avatar_url)
+    embed.add_field(name="Username:",value=user.nick)
+    embed.add_field(name="ID:",value=str(user.id))
+    embed.add_field(name="Joined At:",value=user.joined_at.strftime("%Y-%m-%d %H:%M UTC"))
+    embed.add_field(name="Created At:", value=user.created_at.strftime("%Y-%m-%d %H:%M UTC"))
+    embed.add_field(name="Status:",value=user.status)
+    embed.add_field(name="Display Colour:",value=user.colour.to_rgb())
+    embed.add_field(name="Top Role:",value=user.top_role.name)
+    embed.add_field(name="Bot:", value=user.bot)
+    roles = []
+    for x in user.roles:
+        roles.append(x.name)
+    val = '\n'.join(x for x in roles)
+    params = {
+        "api_dev_key": pastebin_api_key, "api_option": 'paste', "api_paste_code": val,
+        "api_user_key": pastebin_user_key,
+        "api_paste_private": 0, "api_paste_expire_date": '1H',
+        "api_paste_name": f"{user.name + '#' + user.discriminator}'s Roles"
+    }
+    url = requests.post(pastebin_url, data=params).text
+    embed.add_field(name="Roles (Expires in 1 Hour):", value=url)
+    guildperms = user.guild_permissions
+    key_perms = {"Administrator":guildperms.administrator,"Ban Members":guildperms.ban_members,
+                 "Kick Members":guildperms.kick_members,"Manage Channels":guildperms.manage_channels,
+                 "Manage Server":guildperms.manage_guild,"Manage Roles":guildperms.manage_roles,
+                 "Manage Nicknames":guildperms.manage_nicknames,"Mute Members":guildperms.mute_members,
+                 "Deafen Members":guildperms.deafen_members,"Move Members":guildperms.deafen_members}
+    key_permissions = []
+    for x,y in key_perms.items():
+        if y:
+            key_permissions.append(x)
+    key_perm = ", ".join(x for x in key_permissions)
+    embed.add_field(name="Key Permissions:",value=key_perm,inline=False)
+    embed.set_footer(text=df)
+
+    await ctx.message.channel.send(embed=embed)
+
+@client.command()
+async def outsideuserinfo(ctx,id:int):
+    user = await client.fetch_user(id)
+    embed = discord.Embed(
+        colour=hc
+    )
+    embed.set_thumbnail(url=user.avatar_url)
+    embed.set_author(name=user.name + '#' + user.discriminator, icon_url=user.avatar_url)
+    embed.add_field(name="ID:", value=str(user.id))
+    embed.add_field(name="Created At:", value=user.created_at.strftime("%Y-%m-%d %H:%M UTC"))
+    embed.add_field(name="Bot:", value=user.bot)
+    embed.set_footer(text=df)
+
+    await ctx.message.channel.send(embed=embed)
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')

@@ -6,3 +6,4 @@ arrow
 google
 beautifulsoup4
 googletrans
+requests
