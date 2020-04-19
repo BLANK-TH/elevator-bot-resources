@@ -15,7 +15,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.36.82 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.36.83 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -1213,11 +1213,13 @@ async def serverinfo(ctx):
     channels = [f"Channels of {guild.name}:"]
     roles = []
     for x in guild.channels:
+        if type(x) != discord.TextChannel:
+            continue
         channels.append(x.name)
     for x in guild.roles:
         roles.append(x.name)
     roles.append(f"Roles of {guild.name}:")
-    roles = roles.reverse()
+    roles.reverse()
     channel_msg = '\n'.join(x for x in channels)
     role_msg = '\n'.join(x for x in roles)
     channel_params = {'api_dev_key': pastebin_api_key, 'api_option': 'paste',
