@@ -15,7 +15,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.36.81 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.36.82 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -1918,7 +1918,7 @@ async def userinfo(ctx,*,user:discord.Member):
     for x in user.roles:
         roles.append(x.name)
     val = ', '.join(x for x in roles)
-    embed.add_field(name="Roles (Expires in 1 Hour):", value=val, inline=False)
+    embed.add_field(name="Roles:", value=val, inline=False)
     guildperms = user.guild_permissions
     key_perms = {"Administrator":guildperms.administrator,"Ban Members":guildperms.ban_members,
                  "Kick Members":guildperms.kick_members,"Manage Channels":guildperms.manage_channels,
