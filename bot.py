@@ -15,7 +15,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.36.79 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.36.80 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -1910,7 +1910,7 @@ async def userinfo(ctx,*,user:discord.Member):
     embed.add_field(name="Joined At:",value=user.joined_at.strftime("%Y-%m-%d %H:%M UTC"))
     embed.add_field(name="Created At:", value=user.created_at.strftime("%Y-%m-%d %H:%M UTC"))
     embed.add_field(name="Status:",value=user.status)
-    embed.add_field(name="Display Colour:",value=user.colour.to_rgb())
+    embed.add_field(name="Display Colour:",value=f"RGB: {user.colour.to_rgb()}\nHEX: {str(user.colour)}")
     embed.add_field(name="Top Role:",value=user.top_role.name)
     embed.add_field(name="Bot:", value=user.bot)
     roles = []
