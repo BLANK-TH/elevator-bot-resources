@@ -15,7 +15,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.36.78 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.36.79 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -669,19 +669,6 @@ async def sigh(ctx):
     s_embed.set_image(url='https://i.imgur.com/JWeTHLT.jpg')
 
     await ctx.message.channel.send(embed=s_embed)
-
-@client.command(pass_context=True, aliases=['pfp','profile','avatar'])
-async def _avatar(ctx, member: discord.Member='None'):
-    if member == "None":
-        member = ctx.message.author
-    a_embed = discord.Embed(
-        description=f"{member.mention}'s Avatar/Profile Picture",
-        colour=hc
-    )
-    a_embed.set_footer(text=df)
-    a_embed.set_image(url=f'{member.avatar_url}')
-
-    await ctx.message.channel.send(embed=a_embed)
 
 @client.command()
 async def cute(ctx,*,user:discord.Member='empty'):
