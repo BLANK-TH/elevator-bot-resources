@@ -15,7 +15,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.36.84 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.36.85 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -464,6 +464,10 @@ async def help(ctx,page='1'):
                              )
         help_embed.add_field(name='rp!shiprate <name or userid/ping> <name or userid/ping>',
                              value='Responds with a random percentage of how compatible the 2 people would be.',
+                             inline=False
+                             )
+        help_embed.add_field(name='rp!hdmof | rp!hellodarkness',
+                             value='Responds with a link that is perfectly timed for the "Hello Darnkess" song.',
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='8/8')
@@ -1996,5 +2000,9 @@ async def shiprate(ctx,user1:str,user2:str):
     )
 
     await ctx.message.channel.send(content=descrip_msg,embed=embed)
+
+@client.command(aliases=['hellodarkness','hdmof'])
+async def _hellodarknessmyoldfriend(ctx):
+    await ctx.message.channel.send("https://www.youtube.com/watch?v=qYS0EeaAUMw&t=4")
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
