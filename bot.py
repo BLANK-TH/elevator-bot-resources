@@ -15,7 +15,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.36.83 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.36.84 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -460,6 +460,10 @@ async def help(ctx,page='1'):
                              value="Responds with a message telling you various information about the user you mentioned! "
                                    "This is different from the `userinfo` command because this can be used on anyone not "
                                    "just people in the server.",
+                             inline=False
+                             )
+        help_embed.add_field(name='rp!shiprate <name or userid/ping> <name or userid/ping>',
+                             value='Responds with a random percentage of how compatible the 2 people would be.',
                              inline=False
                              )
         help_embed.add_field(name='Page Number', value='8/8')
@@ -1951,5 +1955,46 @@ async def outsideuserinfo(ctx,id:int):
     embed.set_footer(text=df)
 
     await ctx.message.channel.send(embed=embed)
+
+@client.command()
+async def shiprate(ctx,user1:str,user2:str):
+    try:
+        user1 = ctx.message.author.guild.get_member(int(user1.replace("<@!", "").replace(">", ""))).display_name
+    except:
+        pass
+    try:
+        user2 = ctx.message.author.guild.get_member(int(user2.replace("<@!", "").replace(">", ""))).display_name
+    except:
+        pass
+    rate = randint(0,100)
+    bar_full = "<:shipratefull:701950795649777736>"
+    bar_empty = "<:shiprateempty:701950795947704340>"
+    cur_num = round(rate/10)
+    empty_num = 10 - cur_num
+    descrip_msg = f"💗 **MATCHMAKING** 💗\n🔻 *`{user1}`*\n🔺 *`{user2}`*"
+    bar_msg = ""
+    for x in range(0,cur_num):
+        bar_msg += bar_full
+    for x in range(0,empty_num):
+        bar_msg += bar_empty
+    if cur_num == 10:
+        expression = "Perfect! 💯"
+    elif cur_num > 8:
+        expression = "Great! 😃"
+    elif cur_num > 6:
+        expression = "Not Bad! 🙂"
+    elif cur_num > 4:
+        expression = "Ok... 🙁"
+    elif cur_num > 2:
+        expression = "Horrible! 😢"
+    else:
+        expression = "Impossible... 😭"
+    embed_msg = f"**{str(rate)}%** {bar_msg} {expression}"
+    embed = discord.Embed(
+        description=embed_msg,
+        colour=0xff81d2
+    )
+
+    await ctx.message.channel.send(content=descrip_msg,embed=embed)
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
