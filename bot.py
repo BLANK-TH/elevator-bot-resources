@@ -9,20 +9,20 @@ from PyDictionary import PyDictionary
 from unit_converter.converter import converts
 from googlesearch import search
 from googletrans import Translator
+import json
 import asyncio
 import arrow
 import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.36.85 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.36.86 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
 pastebin_user_key = '33868e180241dca1b863695603b73fc6'
 pastebin_url = 'https://pastebin.com/api/api_post.php'
 client.remove_command('help')
-current_count = None
 LANGUAGES = {
     'af': 'afrikaans',
     'sq': 'albanian',
@@ -180,7 +180,8 @@ async def on_message(message):
             msg = await message.channel.send(embed=embed)
             await msg.delete(delay=5)
             return
-        global current_count
+        file = open("counting.json","r+")
+        current_count = json.load(file)
         if current_count is None:
             current_count = (cur_num - 1,None)
         if cur_num > current_count[0] + 1 or cur_num < current_count[0] + 1 or current_count[1] == message.author.id:
@@ -199,6 +200,10 @@ async def on_message(message):
             await msg.delete(delay=5)
         else:
             current_count = (cur_num,message.author.id)
+            file.seek(0)
+            file.truncate()
+            json.dump(current_count,file)
+            file.close()
     await client.process_commands(message)
 
 @client.command()
@@ -1730,8 +1735,12 @@ async def setcounting(ctx,num:int,user:discord.Member):
     if not ctx.message.author.id == 616032766974361640:
         await ctx.message.channel.send("This can only be used by the bot owner.")
         return
-    global current_count
     current_count = (num,user.id)
+    file = open("counting.json", "w")
+    file.seek(0)
+    file.truncate()
+    json.dump(current_count,file)
+    file.close()
     await ctx.message.channel.send("Counting Position Updated!")
 
 
