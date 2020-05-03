@@ -9,6 +9,7 @@ from PyDictionary import PyDictionary
 from unit_converter.converter import converts
 from googlesearch import search
 from googletrans import Translator
+from difflib import SequenceMatcher
 import json
 import asyncio
 import arrow
@@ -16,7 +17,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.36.86 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.36.87 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -2013,5 +2014,19 @@ async def shiprate(ctx,user1:str,user2:str):
 @client.command(aliases=['hellodarkness','hdmof'])
 async def _hellodarknessmyoldfriend(ctx):
     await ctx.message.channel.send("https://www.youtube.com/watch?v=qYS0EeaAUMw&t=4")
+
+@client.command(aliases=['animatedemoji','animemoji','ae'])
+async def _animatedemoji(ctx,*,emoji_name):
+    def similar(a,b):
+        return SequenceMatcher(None,a,b).ratio()
+    emoji_similaritys = {}
+    for emoji in ctx.guild.emojis:
+        if emoji.animated:
+            emoji_similaritys[similar(emoji_name,emoji.name)] = emoji
+    highest_emoji = max([*emoji_similaritys]),emoji_similaritys[max([*emoji_similaritys])]
+    if highest_emoji[0] < 0.1:
+        await ctx.message.channel.send("Could not find any emojis that match `{}`".format(emoji_name))
+        return
+    await ctx.message.channel.send("<a:{}:{}>".format(highest_emoji[1].name,str(highest_emoji[1].id)))
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
