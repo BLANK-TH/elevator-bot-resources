@@ -1737,7 +1737,7 @@ async def setcounting(ctx,num:int,user:discord.Member):
         await ctx.message.channel.send("This can only be used by the bot owner.")
         return
     current_count = (num,user.id)
-    file = open("counting.json", "w")
+    file = open("counting.json", "r+")
     file.seek(0)
     file.truncate()
     json.dump(current_count,file)
