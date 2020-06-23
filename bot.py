@@ -20,7 +20,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.37.89 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.37.90 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -1794,7 +1794,7 @@ async def rankthot(ctx,*,user:discord.Member=None):
 
     await ctx.message.channel.send(embed=embed)
 
-
+@client.command()
 async def deathbattle(ctx,user:discord.Member):
     p1tup = (ctx.message.author.display_name, 100)
     p2tup = (user.display_name, 100)
