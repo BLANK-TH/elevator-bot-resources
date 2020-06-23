@@ -10,6 +10,9 @@ from unit_converter.converter import converts
 from googlesearch import search
 from googletrans import Translator
 from difflib import SequenceMatcher
+from deck_of_cards import deck_of_cards
+import urllib
+import urllib.request
 import json
 import asyncio
 import arrow
@@ -17,7 +20,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.36.87 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.37.87 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -2013,5 +2016,374 @@ async def _animatedemoji(ctx,*,emoji_name):
         await ctx.message.channel.send("Could not find any emojis that match `{}`".format(emoji_name))
         return
     await ctx.message.channel.send("<a:{}:{}>".format(highest_emoji[1].name,str(highest_emoji[1].id)))
+
+@client.command()
+async def blackjack(ctx):
+    def get_card(deck):
+        first_len = len(deck.deck)
+        card = deck.give_random_card()
+        second_len = len(deck.deck)
+        for x in range(0,first_len-second_len-1):
+            deck.take_card(card)
+        return card
+    def get_emoji(value,suit):
+        suit_values = {0:"S",1:"H",2:"D",3:"C"}
+        suit_letter = suit_values[suit]
+        for guild in client.guilds:
+            for emoji in guild.emojis:
+                if emoji.name == str(value) + suit_letter:
+                    return "<:{}:{}>".format(emoji.name,str(emoji.id))
+        return "Error: Emoji Not Found"
+    def generate_deck(num_deck):
+        deck_obj = deck_of_cards.DeckOfCards()
+        for x in range(0,num_deck):
+            deck_obj.add_deck()
+        deck_obj.shuffle_deck()
+        return deck_obj
+    def get_value(hand):
+        val = 0
+        for card in hand:
+            if card.value > 10:
+                val += 10
+                continue
+            if card.value == 1:
+                continue
+            val += card.value
+        for card in hand:
+            if card.value == 1:
+                if val + 11 <= 21:
+                    val += 11
+                    continue
+                else:
+                    val += 1
+        return val
+    def check_soft(hand):
+        val = 0
+        for card in hand:
+            if card.value > 10:
+                val += 10
+                continue
+            if card.value == 1:
+                continue
+            val += card.value
+        status = []
+        for card in hand:
+            if card.value == 1:
+                if val + 11 <= 21:
+                    status.append(True)
+                    val += 11
+                else:
+                    status.append(False)
+                    val += 1
+        for status in status:
+            if status:
+                return True
+        return False
+    def check(message):
+        if (message.author == ctx.message.author and message.content.lower() == "hit") or (message.author == ctx.message.author and message.content.lower() == "stand"):
+            return True
+        return False
+    def check_lose(hand):
+        val = get_value(hand)
+        if val > 21:
+            return True
+        return False
+    def embed_gen(player,dealer,status):
+        if status == "lost":
+            colour = discord.Colour.red()
+        elif status == "won":
+            colour = discord.Colour.green()
+        elif status == "tied":
+            colour = discord.Colour.gold()
+        else:
+            status = "An Error Has Occured"
+            colour = discord.Colour.dark_red()
+        embed = discord.Embed(
+            description="You {}!".format(status),
+            colour=colour
+        )
+        embed.set_author(name=ctx.message.author.name + '#' + ctx.message.author.discriminator,
+                         icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text=df)
+        player_emoji = " ".join(get_emoji(x.value, x.suit) for x in player)
+        dealer_emoji = " ".join(get_emoji(x.value, x.suit) for x in dealer)
+        player_value = str(get_value(player_hand))
+        dealer_value = str(get_value(dealer_hand))
+        if check_soft(player_hand):
+            player_value = "Soft " + str(get_value(player_hand))
+        if check_soft(dealer_hand):
+            dealer_value = "Soft " + str(get_value(dealer_hand))
+        if get_value(player_hand) == 21:
+            player_value = "Blackjack"
+        if get_value(dealer_hand) == 21:
+            dealer_value = "Blackjack"
+        embed.add_field(name="Your Hand:", value="{}\nValue: {}".format(player_emoji, player_value))
+        embed.add_field(name="Dealer's Hand:", value="{}\nValue: {}".format(dealer_emoji, dealer_value))
+        return embed
+    player_hand = []
+    dealer_hand = []
+    deck = generate_deck(6)
+    dealer_hand.append(get_card(deck))
+    dealer_hand.append(get_card(deck))
+    player_hand.append(get_card(deck))
+    player_hand.append(get_card(deck))
+    embed = discord.Embed(
+        description="Type `hit` to draw another card or `stand` to pass. If you don't respond for 1 minute, you lose!",
+        colour=discord.Colour.blue()
+    )
+    embed.set_author(name=ctx.message.author.name + '#' + ctx.message.author.discriminator, icon_url=ctx.message.author.avatar_url)
+    embed.set_footer(text=df)
+    player_emoji = " ".join(get_emoji(x.value,x.suit) for x in player_hand)
+    dealer_emoji = get_emoji(dealer_hand[0].value,dealer_hand[0].suit) + " " + "<:blue_back:706507690054123561>"
+    player_value = str(get_value(player_hand))
+    dealer_value = str(dealer_hand[0].value)
+    if dealer_hand[0].value > 10:
+        dealer_value = "10"
+    if check_soft(player_hand):
+        player_value = "Soft " + str(get_value(player_hand))
+    if check_soft(dealer_hand) and dealer_hand[0].value == 1:
+        dealer_value = "Soft 11"
+    embed.add_field(name="Your Hand:",value="{}\nValue: {}".format(player_emoji,player_value))
+    embed.add_field(name="Dealer's Hand:",value="{}\nValue: {}".format(dealer_emoji,dealer_value))
+    message = await ctx.message.channel.send(embed=embed)
+    if check_lose(dealer_hand):
+        await message.edit(embed=embed_gen(player_hand, dealer_hand,"won"))
+        return
+    if get_value(player_hand) == 21:
+        await message.edit(embed=embed_gen(player_hand,dealer_hand,"won"))
+        return
+    if get_value(dealer_hand) == 21:
+        await message.edit(embed=embed_gen(player_hand,dealer_hand,"lost"))
+        return
+    if check_lose(player_hand):
+        await message.edit(embed=embed_gen(player_hand, dealer_hand,"lost"))
+        return
+    while True:
+        try:
+            choice = await client.wait_for("message",check=check,timeout=60)
+        except asyncio.TimeoutError:
+            await ctx.message.channel.send("You took more than 1 minute to answer, you lost!")
+            return
+        if choice.content.lower() == "stand":
+            break
+        player_hand.append(get_card(deck))
+        if check_lose(player_hand):
+            await message.edit(embed=embed_gen(player_hand,dealer_hand,"lost"))
+            return
+        if get_value(player_hand) == 21:
+            await message.edit(embed=embed_gen(player_hand,dealer_hand,"won"))
+            return
+        if len(player_hand) >= 7:
+            await message.edit(embed=embed_gen(player_hand,dealer_hand,"won"))
+            return
+        embed = discord.Embed(
+            description="Type `hit` to draw another card or `stand` to pass. If you don't respond for 1 minute, you lose!",
+            colour=discord.Colour.blue()
+        )
+        embed.set_author(name=ctx.message.author.name + '#' + ctx.message.author.discriminator,
+                         icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text=df)
+        player_emoji = " ".join(get_emoji(x.value, x.suit) for x in player_hand)
+        dealer_emoji = get_emoji(dealer_hand[0].value, dealer_hand[0].suit) + " " + "<:blue_back:706507690054123561>"
+        player_value = str(get_value(player_hand))
+        dealer_value = str(dealer_hand[0].value)
+        if dealer_hand[0].value > 10:
+            dealer_value = "10"
+        if check_soft(player_hand):
+            player_value = "Soft " + str(get_value(player_hand))
+        if check_soft(dealer_hand) and dealer_hand[0].value == 1:
+            dealer_value = "Soft 11"
+        if get_value(player_hand) == 21:
+            await message.edit(embed=embed_gen(player_hand, dealer_hand, "won"))
+            return
+        embed.add_field(name="Your Hand:", value="{}\nValue: {}".format(player_emoji, player_value))
+        embed.add_field(name="Dealer's Hand:",value="{}\nValue: {}".format(dealer_emoji,dealer_value))
+        await message.edit(embed=embed)
+    while get_value(dealer_hand) < 17:
+        dealer_hand.append(get_card(deck))
+        if check_lose(dealer_hand):
+            await message.edit(embed=embed_gen(player_hand,dealer_hand,"won"))
+            return
+        if get_value(dealer_hand) == 21:
+            await message.edit(embed=embed_gen(player_hand,dealer_hand,"lost"))
+            return
+        if len(dealer_hand) >= 7:
+            await message.edit(embed=embed_gen(player_hand, dealer_hand, "lost"))
+            return
+        embed = discord.Embed(
+            description="Dealer is playing!",
+            colour=discord.Colour.orange()
+        )
+        embed.set_author(name=ctx.message.author.name + '#' + ctx.message.author.discriminator,
+                         icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text=df)
+        player_emoji = " ".join(get_emoji(x.value, x.suit) for x in player_hand)
+        dealer_emoji = " ".join(get_emoji(x.value, x.suit) for x in dealer_hand)
+        player_value = str(get_value(player_hand))
+        dealer_value = str(get_value(dealer_hand))
+        if check_soft(player_hand):
+            player_value = "Soft " + str(get_value(player_hand))
+        if check_soft(dealer_hand):
+            dealer_value = "Soft " + str(get_value(dealer_hand))
+        if get_value(player_hand) == 21:
+            player_value = "Blackjack"
+        if get_value(dealer_hand) == 21:
+            dealer_value = "Blackjack"
+        embed.add_field(name="Your Hand:", value="{}\nValue: {}".format(player_emoji, player_value))
+        embed.add_field(name="Dealer's Hand:", value="{}\nValue: {}".format(dealer_emoji, dealer_value))
+        await message.edit(embed=embed)
+        await asyncio.sleep(1)
+    if get_value(dealer_hand) == get_value(player_hand):
+        await message.edit(embed=embed_gen(player_hand, dealer_hand, "tied"))
+        return
+    winning_value = min([get_value(player_hand),get_value(dealer_hand)],key=lambda list_value : abs(list_value - 21))
+    if winning_value == get_value(player_hand):
+        await message.edit(embed=embed_gen(player_hand, dealer_hand,"won"))
+        return
+    await message.edit(embed=embed_gen(player_hand, dealer_hand,"lost"))
+    return
+
+@client.command()
+async def version(ctx):
+    await ctx.message.channel.send("GFL RP Server Bot is currently at {}".format(
+        df.replace(" Developed By: Kanade Tachibana","").replace("Elevator Server Bot ","")))
+
+@client.command()
+async def impersonate(ctx,username,*,message):
+    await ctx.message.delete()
+    def similar(a,b):
+        return SequenceMatcher(None,a,b).ratio()
+    user_similarities = {}
+    for user in ctx.guild.members:
+        if username.replace("<@","").replace(">","").replace("!","").isdigit():
+            user_similarities[similar(username.replace("<@","").replace(">","").replace("!",""), str(user.id))] = user
+            continue
+        con = True
+        for letter in username:
+            if letter.lower() not in user.display_name.lower():
+                con = False
+        if con:
+            user_similarities[similar(username.lower(), user.display_name.lower())] = user
+    if len(user_similarities) <= 0:
+        await ctx.message.channel.send("Could not find any users that match `{}`".format(username))
+        return
+    highest_user = max([*user_similarities]), user_similarities[max([*user_similarities])]
+    if highest_user[0] < 0.1:
+        await ctx.message.channel.send("Could not find any users that match `{}`".format(username))
+        return
+    user = highest_user[1]
+    webhook = None
+    for hook in await ctx.message.channel.webhooks():
+        if hook.user.id == 683346846990729242:
+            webhook = hook
+            break
+    if webhook is None:
+        webhook = await ctx.message.channel.create_webhook(name="Elevator Bot Webhook")
+    await webhook.send(content=message,username=user.display_name,avatar_url=user.avatar_url)
+
+@client.command()
+async def usersend(ctx,*,details):
+    detail_list = details.split("|")
+    if len(detail_list) == 2:
+        name = detail_list[0]
+        message = detail_list[1]
+        avatar = None
+    elif len(detail_list) == 3:
+        name = detail_list[0]
+        message = detail_list[1]
+        avatar = detail_list[2]
+    else:
+        await ctx.message.delete()
+        await ctx.message.channel.send("You passed the incorrect number of parameters!")
+        return
+    if len(ctx.message.attachments) >= 1:
+        avatar = ctx.message.attachments[0].url
+    supported_image_extension = ["JPEG","JPG","GIF","WEBM","BMP","TIFF","PNG"]
+    if not avatar is None:
+        con = False
+        for extension in supported_image_extension:
+            if extension.lower() in avatar:
+                con = True
+                break
+        if not con:
+            await ctx.message.channel.send("The avatar link is not in the correct format. Supported formats are {}".format(
+                ", ".join("." + x for x in supported_image_extension)
+            ))
+            await ctx.message.delete()
+            return
+    webhook = None
+    for hook in await ctx.message.channel.webhooks():
+        if hook.user.id == 683346846990729242:
+            webhook = hook
+            break
+    if webhook is None:
+        webhook = await ctx.message.channel.create_webhook(name="GFL RP Bot Webhook")
+    await webhook.send(content=message, username=name, avatar_url=avatar)
+    await ctx.message.delete()
+
+@client.command(aliases=["jeopardymusic","jm"])
+async def _jeopardymusic(ctx):
+    await ctx.message.channel.send("https://www.youtube.com/watch?v=0Wi8Fv0AJA4")
+
+@client.command()
+async def disagree(ctx,user:discord.Member="None"):
+    if user != "None":
+        msg = f"{ctx.message.author.mention} disagrees with what {user.mention} said!"
+    else:
+        msg = f"{ctx.message.author.mention} disagrees with what was said!"
+    a_embed = discord.Embed(
+        description=msg,
+        colour=hc
+    )
+    a_embed.set_footer(text=df)
+    a_embed.set_image(url="https://i.imgur.com/ErwNJw3.jpg")
+
+    await ctx.message.channel.send(embed=a_embed)
+
+@client.command()
+async def celebratemusic(ctx):
+    await ctx.message.channel.send("https://www.youtube.com/watch?v=UWLIgjB9gGw")
+
+@client.command()
+async def sillyname(ctx,user:discord.Member=None):
+    url = urllib.request.urlopen("https://raw.githubusercontent.com/bevacqua/correcthorse/master/wordlist.json")
+    words = json.loads(url.read())
+    orig_nick = ctx.message.author.nick
+    while True:
+        name = choice(words).title() + " " + choice(words).title()
+        if not len(name) > 32:
+            break
+    if user is not None:
+        staff_role = get(ctx.guild.roles, id=725082640507469845)
+        if staff_role in ctx.message.author.roles:
+            await user.edit(nick=name)
+            await ctx.message.channel.send(
+                "`{}`'s nickname has been changed to `{}`! Their original nickname was `{}`".format(user.name,name, str(orig_nick)))
+            return
+        else:
+            await ctx.message.channel.send("You do not have permissions to change someone else's nickname! Only Staff"
+                                           " can do this.")
+            return
+    await ctx.message.author.edit(nick=name)
+    await ctx.message.channel.send("You nickname has been changed to `{}`! If you would like to change it back, "
+                                   "your original nickname was `{}`".format(name,str(orig_nick)))
+
+@client.command()
+async def redalert(ctx,*,reason=None):
+    if reason is None:
+        embed = discord.Embed(
+            title="RED ALERT!!! RED ALERT!!! RED ALERT!!!",
+            colour=discord.Colour.red()
+        )
+    else:
+        embed = discord.Embed(
+            title="RED ALERT!!! RED ALERT!!! RED ALERT!!!",
+            description=reason,
+            colour=discord.Colour.red()
+        )
+    embed.set_footer(text=df)
+    embed.set_image(url="https://media1.tenor.com/images/5711e293284d2912a5bdec8b9997a2f0/tenor.gif?itemid=14378764")
+
+    await ctx.message.channel.send(embed=embed)
 
 client.run('Njk5Njc3MTA4NjA3MTIzNTQ4.XpX3HQ.hIfoh4Q6KzH52D25KYR-QGNMl8k')
