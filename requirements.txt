@@ -7,3 +7,4 @@ google
 beautifulsoup4
 googletrans
 requests
+deck-of-cards
