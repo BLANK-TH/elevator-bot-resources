@@ -20,8 +20,8 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.37.90 Developed By: Kanade Tachibana"
-game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
+df = "Elevator Server Bot Ver.14.37.90 Developed By: BLANK"
+game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: BLANK','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: BLANK","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
 pastebin_user_key = '33868e180241dca1b863695603b73fc6'
@@ -138,7 +138,7 @@ LANGUAGES = {
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game('Developed by Kanade Tachibana'))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game('Developed by BLANK'))
     change_game.start()
     print("Bot is ready.")
 
@@ -2246,7 +2246,7 @@ async def blackjack(ctx):
 @client.command()
 async def version(ctx):
     await ctx.message.channel.send("GFL RP Server Bot is currently at {}".format(
-        df.replace(" Developed By: Kanade Tachibana","").replace("Elevator Server Bot ","")))
+        df.replace(" Developed By: BLANK","").replace("Elevator Server Bot ","")))
 
 @client.command()
 async def impersonate(ctx,username,*,message):
