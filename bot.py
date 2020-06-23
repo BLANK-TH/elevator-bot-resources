@@ -20,7 +20,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.37.88 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.37.89 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -194,7 +194,7 @@ async def on_message(message):
     #        file.truncate()
     #        json.dump(current_count,file)
     #        file.close()
-    #await client.process_commands(message)
+    await client.process_commands(message)
 
 @client.command()
 async def help(ctx,page='1'):
