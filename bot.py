@@ -20,7 +20,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.37.87 Developed By: Kanade Tachibana"
+df = "Elevator Server Bot Ver.14.37.88 Developed By: Kanade Tachibana"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: Kanade Tachibana','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: Kanade Tachibana","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -2274,7 +2274,7 @@ async def impersonate(ctx,username,*,message):
     user = highest_user[1]
     webhook = None
     for hook in await ctx.message.channel.webhooks():
-        if hook.user.id == 683346846990729242:
+        if hook.user.id == 699677108607123548:
             webhook = hook
             break
     if webhook is None:
@@ -2313,7 +2313,7 @@ async def usersend(ctx,*,details):
             return
     webhook = None
     for hook in await ctx.message.channel.webhooks():
-        if hook.user.id == 683346846990729242:
+        if hook.user.id == 699677108607123548:
             webhook = hook
             break
     if webhook is None:
