@@ -145,20 +145,6 @@ async def change_game():
 
 @client.event
 async def on_message(message):
-    if len(message.embeds) >= 1:
-        for em in message.embeds:
-            try:
-                if 'is now level' in em.title.lower() or 'is now level' in em.description.lower():
-                    embed = discord.Embed(
-                        description="STFU POKECORD!",
-                        colour=hc
-                    )
-                    embed.set_footer(text=df)
-                    await message.delete()
-                    msg = await message.channel.send(embed=embed)
-                    await msg.delete(delay=10)
-            except:
-                pass
     if 'niger' in message.content.lower():
         embed = discord.Embed(
             description=f"{message.author.mention} the N word is forbidden! Please don't say it. This message will self destruct in 30 seconds!",
@@ -168,44 +154,44 @@ async def on_message(message):
         await message.delete()
         msg = await message.channel.send(embed=embed)
         await msg.delete(delay=30)
-    if message.channel.id == 689077082609025089 and not message.author.bot:
-        try:
-            cur_num = int(message.content)
-        except:
-            await message.delete()
-            embed = discord.Embed(
-                title="Please don't chat here, this channel is for counting only.",
-                colour=hc
-            )
-            embed.set_footer(text=df)
-            msg = await message.channel.send(embed=embed)
-            await msg.delete(delay=5)
-            return
-        file = open("counting.json","r+")
-        current_count = json.load(file)
-        if current_count is None:
-            current_count = (cur_num - 1,None)
-        if cur_num > current_count[0] + 1 or cur_num < current_count[0] + 1 or current_count[1] == message.author.id:
-            await message.delete()
-            embed = discord.Embed(
-                title="Please don't count by yourself, skip ahead, enter a lower number!",
-                colour=hc
-            )
-            embed.add_field(name="Number You Entered:",value=str(cur_num))
-            embed.add_field(name="Number You Should Have Entered:",value=str(current_count[0] + 1))
-            embed.add_field(name="Current Number:",value=str(current_count[0]))
-            embed.add_field(name="Your User ID:",value=str(message.author.id))
-            embed.add_field(name="Current User ID:",value=str(current_count[1]))
-            embed.set_footer(text=df)
-            msg = await message.channel.send(embed=embed)
-            await msg.delete(delay=5)
-        else:
-            current_count = (cur_num,message.author.id)
-            file.seek(0)
-            file.truncate()
-            json.dump(current_count,file)
-            file.close()
-    await client.process_commands(message)
+    #if message.channel.id == 689077082609025089 and not message.author.bot:
+    #    try:
+    #        cur_num = int(message.content)
+    #    except:
+    #        await message.delete()
+    #        embed = discord.Embed(
+    #            title="Please don't chat here, this channel is for counting only.",
+    #            colour=hc
+    #        )
+    #        embed.set_footer(text=df)
+    #        msg = await message.channel.send(embed=embed)
+    #        await msg.delete(delay=5)
+    #        return
+    #    file = open("counting.json","r+")
+    #    current_count = json.load(file)
+    #    if current_count is None:
+    #        current_count = (cur_num - 1,None)
+    #    if cur_num > current_count[0] + 1 or cur_num < current_count[0] + 1 or current_count[1] == message.author.id:
+    #        await message.delete()
+    #        embed = discord.Embed(
+    #            title="Please don't count by yourself, skip ahead, enter a lower number!",
+    #            colour=hc
+    #        )
+    #        embed.add_field(name="Number You Entered:",value=str(cur_num))
+    #        embed.add_field(name="Number You Should Have Entered:",value=str(current_count[0] + 1))
+    #        embed.add_field(name="Current Number:",value=str(current_count[0]))
+    #        embed.add_field(name="Your User ID:",value=str(message.author.id))
+    #        embed.add_field(name="Current User ID:",value=str(current_count[1]))
+    #        embed.set_footer(text=df)
+    #        msg = await message.channel.send(embed=embed)
+    #        await msg.delete(delay=5)
+    #    else:
+    #        current_count = (cur_num,message.author.id)
+    #        file.seek(0)
+    #        file.truncate()
+    #        json.dump(current_count,file)
+    #        file.close()
+    #await client.process_commands(message)
 
 @client.command()
 async def help(ctx,page='1'):
@@ -1743,7 +1729,6 @@ async def setcounting(ctx,num:int,user:discord.Member):
     json.dump(current_count,file)
     file.close()
     await ctx.message.channel.send("Counting Position Updated!")
-
 
 @client.command()
 async def laugh(ctx):
