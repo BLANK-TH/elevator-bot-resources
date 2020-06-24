@@ -20,7 +20,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.37.97 Developed By: BLANK"
+df = "Elevator Server Bot Ver.14.37.98 Developed By: BLANK"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: BLANK','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: BLANK","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -2348,7 +2348,7 @@ async def celebratemusic(ctx):
 async def sillyname(ctx,user:discord.Member=None):
     url = urllib.request.urlopen("https://raw.githubusercontent.com/bevacqua/correcthorse/master/wordlist.json")
     words = json.loads(url.read())
-    orig_nick = ctx.message.author.nick
+    orig_nick = ctx.message.author.display_name
     while True:
         name = choice(words).title() + " " + choice(words).title()
         if not len(name) > 32:
@@ -2362,7 +2362,7 @@ async def sillyname(ctx,user:discord.Member=None):
                 await ctx.message.channel.send("My role isn't high enough to change your nickname!")
                 return
             await ctx.message.channel.send(
-                "`{}`'s nickname has been changed to `{}`! Their original nickname was `{}`".format(user.name,name, str(orig_nick)))
+                "`{}`'s nickname has been changed to `{}`! Their original name was `{}`".format(user.name,name, str(orig_nick)))
             return
         else:
             await ctx.message.channel.send("You do not have permissions to change someone else's nickname! Only Staff"
@@ -2374,7 +2374,7 @@ async def sillyname(ctx,user:discord.Member=None):
         await ctx.message.channel.send("My role isn't high enough to change your nickname!")
         return
     await ctx.message.channel.send("You nickname has been changed to `{}`! If you would like to change it back, "
-                                   "your original nickname was `{}`".format(name,str(orig_nick)))
+                                   "your original name was `{}`".format(name,str(orig_nick)))
 
 @client.command()
 async def redalert(ctx,*,reason=None):
