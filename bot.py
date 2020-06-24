@@ -20,7 +20,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.37.104 Developed By: BLANK"
+df = "Elevator Server Bot Ver.14.37.105 Developed By: BLANK"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: BLANK','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: BLANK","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -157,9 +157,11 @@ async def on_message(message):
         await message.delete()
         msg = await message.channel.send(embed=embed)
         await msg.delete(delay=30)
-    if "<@699677108607123548>" in message.content:
-        msg = await message.channel.send("<a:{angryping}:{725393149484335165}>")
-        await msg.delete(delay=15)
+    for mention in message.mentions:
+        if 699677108607123548 == mention.id:
+            msg = await message.channel.send("<a:{angryping}:{725393149484335165}>")
+            await msg.delete(delay=15)
+            break
     #if message.channel.id == 689077082609025089 and not message.author.bot:
     #    try:
     #        cur_num = int(message.content)
