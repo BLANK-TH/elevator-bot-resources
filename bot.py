@@ -20,7 +20,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.37.91 Developed By: BLANK"
+df = "Elevator Server Bot Ver.14.37.92 Developed By: BLANK"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: BLANK','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: BLANK","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -2358,7 +2358,7 @@ async def sillyname(ctx,user:discord.Member=None):
         if staff_role in ctx.message.author.roles:
             try:
                 await user.edit(nick=name)
-            except discord.ext.commands.errors.CommandInvokeError:
+            except discord.errors.Forbidden:
                 await ctx.message.channel.send("My role isn't high enough to change your nickname!")
                 return
             await ctx.message.channel.send(
@@ -2370,7 +2370,7 @@ async def sillyname(ctx,user:discord.Member=None):
             return
     try:
         await ctx.message.author.edit(nick=name)
-    except discord.ext.commands.errors.CommandInvokeError:
+    except discord.errors.Forbidden:
         await ctx.message.channel.send("My role isn't high enough to change your nickname!")
         return
     await ctx.message.channel.send("You nickname has been changed to `{}`! If you would like to change it back, "
