@@ -20,7 +20,7 @@ import typing
 import requests
 
 client = commands.Bot(command_prefix = 's!')
-df = "Elevator Server Bot Ver.14.37.93 Developed By: BLANK"
+df = "Elevator Server Bot Ver.14.37.94 Developed By: BLANK"
 game = cycle(["A Bot for the Elevator Discord Server!",'Developed By: BLANK','STFU Pokecord with your annoying level up messages!','Use s!help to see my commands!',df.replace(" Developed By: BLANK","")])
 hc = 0x8681bb
 pastebin_api_key = 'b16274a8e8a31de6671bcb6329528c24'
@@ -2395,7 +2395,7 @@ async def redalert(ctx,*,reason=None):
     await ctx.message.channel.send(embed=embed)
 
 @client.command()
-async def mega(ctx):
+async def megan(ctx):
     url = urllib.request.urlopen("https://raw.githubusercontent.com/bevacqua/correcthorse/master/wordlist.json")
     words = json.loads(url.read())
     await ctx.message.channel.send("MEGA{}".format(choice(words).upper()))
