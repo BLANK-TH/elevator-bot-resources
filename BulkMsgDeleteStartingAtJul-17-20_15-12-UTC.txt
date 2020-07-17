@@ -1,0 +1,22 @@
+Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-07-17 15:12 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733702599525793792 | Message Content: pls bal <@624784181016395806>
+Author Name: Dank Memer | Author Nickname: Dank Memer (pls) | Author ID: 270904126974590976 | Sent At: 2020-07-17 15:12 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733702600486158417 | Message Content: 
+Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-07-17 15:48 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733711784959017051 | Message Content: pls enable ro
+Author Name: Dank Memer | Author Nickname: Dank Memer (pls) | Author ID: 270904126974590976 | Sent At: 2020-07-17 15:48 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733711785940615268 | Message Content: <@616032766974361640>, The following commands or categories are invalid: 
+
+`ro`
+
+Please make sure all of your commands or categories are valid (case-sensitive!) and try again.
+Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-07-17 15:48 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733711802537607279 | Message Content: pls enable rob
+Author Name: Dank Memer | Author Nickname: Dank Memer (pls) | Author ID: 270904126974590976 | Sent At: 2020-07-17 15:48 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733711803590246451 | Message Content: The following commands/categories have been enabled successfully:
+
+`steal`
+Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-07-17 15:48 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733711814994559038 | Message Content: pls enable bankrob
+Author Name: Dank Memer | Author Nickname: Dank Memer (pls) | Author ID: 270904126974590976 | Sent At: 2020-07-17 15:48 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733711815866974239 | Message Content: The following commands/categories have been enabled successfully:
+
+`bankrob`
+Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-07-17 15:48 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733711832480612383 | Message Content: pls disable disable
+Author Name: Dank Memer | Author Nickname: Dank Memer (pls) | Author ID: 270904126974590976 | Sent At: 2020-07-17 15:48 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 733711833067683912 | Message Content: <@616032766974361640>, The following commands or categories are invalid: 
+
+`disable`
+
+Please make sure all of your commands or categories are valid (case-sensitive!) and try again.
