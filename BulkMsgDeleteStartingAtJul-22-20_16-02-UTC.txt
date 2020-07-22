@@ -1,0 +1,4 @@
+Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-07-22 16:02 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 735527109031624704 | Message Content: pls disable gift
+Author Name: Dank Memer | Author Nickname: Dank Memer (pls) | Author ID: 270904126974590976 | Sent At: 2020-07-22 16:02 UTC | Channel Name: developers-bot-hell | Channel ID: 725085898160734271 | Message ID: 735527110516670604 | Message Content: The following commands/categories have been disabled successfully:
+
+`gift`
