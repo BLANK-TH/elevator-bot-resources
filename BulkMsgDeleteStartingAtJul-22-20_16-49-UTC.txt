@@ -1,0 +1,4 @@
+Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-07-22 16:49 UTC | Channel Name: 🖥-bots | Channel ID: 685918906564608055 | Message ID: 735538919558480234 | Message Content: pls enable gift
+Author Name: Dank Memer | Author Nickname: Dank Memer (pls) | Author ID: 270904126974590976 | Sent At: 2020-07-22 16:49 UTC | Channel Name: 🖥-bots | Channel ID: 685918906564608055 | Message ID: 735538920321712190 | Message Content: The following commands/categories have been enabled successfully:
+
+`gift`
