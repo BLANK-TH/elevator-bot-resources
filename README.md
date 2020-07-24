@@ -6,7 +6,7 @@ This is a GitHub repository to act as a storage place for various responses from
 
 ## Links
 Discord Server: https://discord.gg/Cr43nuF
-Trello Board (Not Currently In Use): https://trello.com/b/AogOVieO/gfl-server-bots
+Trello Board (Not Currently In Use): https://trello.com/b/lpO9It0c/elevator-bot
 
 ## Contact
 Appeals/Server Matters: blankdev.th@gmail.com
