@@ -308,7 +308,9 @@ to the user, there is no current way to prevent this.
 Send a message as a custom user with the name you specified. You can optionally add a url to a image to add
 a profile picture to the user. You can also attach a image as a file to use as the profile picture. For example a 
 user without a profile picture would be `s!usersend Name | This is a message`, a example with a profile picture
-is `s!usersend Name | This is a message | https://example.org/example.png`.
+is `s!usersend Name | This is a message | https://example.org/example.png`. If you need to have an `|` in the 
+message then you can replace `|` with `\|`. For example `s!usersend Name | This is a \| straight line` would be sent as 
+`This is a | straight line`.
 
 ### Calculate
 #### Command: `calculate <equation>`
