@@ -285,6 +285,13 @@ Translates phrase from English to the specified language
 #### Command: `captchagen [number of characters]`
 Generates a image captcha, default number of characters is 5. The generator will start to bug out if you go beyond 13.
 
+### Reaction Count
+#### Command: `reactioncount <message link/id> [dns]` **OR** `rc <message link/id> [dns]`
+Counts the number of reactions on the message with the message link you specified. You can also use the message
+ID but that will only work if the message with the ID you are trying to reference is in the same channel as the
+one the command is being used in. By default, bot reactions are subtracted to count bot reactions,
+add the parameter `dns` to the command.
+
 ### Animated Emoji Sender
 #### Command: `animatedemoji <emoji name>` **OR** `animemoji <emoji name>` **OR** `ae <emoji name>`
 If you don't have nitro and you want to send an animated emoji, you can use this command. It will search a
