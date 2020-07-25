@@ -361,7 +361,7 @@ count bombs that are diagonal to it. So the max a number could show is 8.
 Posts a trivia question for you to answer.
 
 ### Blackjack
-#### Command: `blackjack`
+#### Command: `blackjack` **OR** `bj`
 Play a game of blackjack with the dealer. The goal of blackjack is to be the closest to 21 without going
 over. Hit means to pull a card and stand means to stop, let the dealer play, then check who wins. You
 will get 2 cards to start off with. The dealer will also get 2 cards but you can only see one.
