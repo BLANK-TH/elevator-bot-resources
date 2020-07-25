@@ -208,6 +208,12 @@ Sends a simple message thanking you for your tooth and giving you a little money
 Sends a message with a countdown preparing to ban the user for the optionally provided reason. After the countdown 
 is over it sends a message saying the ban succeded and then sends a DM to the user saying `Just Kidding!`.
 
+### Emoji Message
+#### Command: `emojitype <message>`
+Convert the letters and numbers of the message specified into emojis then sends it. Note that if the number of
+letters multiplyed by 22 (`number_of_letters*22`) is more than 2000, then the message won't be able to be sent
+and the bot will respond back with an error.
+
 [//]: # (new fun commands goes here)
 
 ## Utility Commands
