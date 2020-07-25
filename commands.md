@@ -85,7 +85,7 @@ Posts a image and message showing that you are mad/angry.
 Posts a combined (ship) name of the 2 users you mentioned.
 
 ### Ship Rate
-#### Command: `shiprate <name 1/user 1> <name 2/user 2>
+#### Command: `shiprate <name 1/user 1> <name 2/user 2>`
 Posts a random percentage of how compatable the 2 people would be.
 
 ### Pickup Lines
