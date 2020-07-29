@@ -9,5 +9,4 @@ Discord Server: https://discord.gg/Cr43nuF
 Trello Board (Not Currently In Use): https://trello.com/b/lpO9It0c/elevator-bot
 
 ## Contact
-Appeals/Server Matters: blankdev.th@gmail.com  
-Bot Development Matters: theodorehuadev@gmail.com
+Appeals/Server Matters and Bot Development Matters: blankdev.th@gmail.com  
