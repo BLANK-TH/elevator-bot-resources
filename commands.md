@@ -323,6 +323,14 @@ message then you can replace `|` with `\|`. For example `s!usersend Name | This 
 Calculates the equation you gave and returns the answer. It can use some Python built-in functions like `int()` but 
 such a feature is mostly not needed.
 
+### Rules Reference
+#### Command: `rules [rule number]`
+Posts a reference to the rule number you specified, if no rule number was specified then it will show all rules.
+
+### Punishments Reference
+#### Command: `punishments [strikes/info/shadow/report/appeal/full]`
+Posts a reference to the punishment layout that you specified. If none are specified then the default is strikes.
+
 [//]: # (new utility commands goes here)
 
 ## Server Interaction Commands
