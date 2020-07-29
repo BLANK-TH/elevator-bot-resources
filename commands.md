@@ -395,6 +395,16 @@ Delete the specified number of messages from the channel you are currently in.
 ##### Permissions Required: `Staff`
 Log a warning for the mentioned user and sends them a DM notifying them about the warning.
 
+### Mute
+#### Command `mute <user> [reason]`
+Prevent the specified user from messaging/speaking (and adding reactions) in any channel/voic channel and sends them a 
+DM notifying them about the mute with the reason (if applicable).
+
+### Unmute
+#### Command `unmute <user>`
+Allow a muted user to be able to message/speak in channels/voice channels again and sends them a DM
+notifying thema about the unmute.
+
 ### Shadow
 #### Command: `shadow <user> [reason]`
 ##### Permissions Required: `Staff`
