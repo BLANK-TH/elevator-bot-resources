@@ -387,6 +387,17 @@ Delete the specified number of messages from the channel you are currently in.
 ##### Permissions Required: `Staff`
 Log a warning for the mentioned user and sends them a DM notifying them about the warning.
 
+### Shadow
+#### Command: `shadow <user> [reason]`
+##### Permissions Required: `Staff`
+Prevent the specified user from accessing any channel except for rules and an interrogation channel and sends them a DM notifying
+them about the shadow with the reason (if applicable).
+
+### Unshadow
+#### Command: `unshadow <user>`
+##### Permissions Required: `Staff`
+Allow a shadowed user to access channels and sends them a DM notifying them about the unshadow.
+
 ### Kick
 #### Command: `kick <user> [reason]`
 ##### Permissions Required: `Kick_Members`
