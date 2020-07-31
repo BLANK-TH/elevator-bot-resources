@@ -86,7 +86,7 @@ Posts a combined (ship) name of the 2 users you mentioned.
 
 ### Ship Rate
 #### Command: `shiprate <name 1/user 1> <name 2/user 2>`
-Posts a random percentage of how compatable the 2 people would be.
+Posts a random percentage of how compatible the 2 people would be.
 
 ### Pickup Lines
 #### Command: `pickup`  **OR** `pickupline` **OR** `pl`
@@ -113,7 +113,7 @@ Posts a image and message showing that you are insulting the user you mentioned.
 Posts the message back with random capitalisation and a GIF mocking it.
 
 ### Rank Thot
-#### Command: `rankthot [uesr]`
+#### Command: `rankthot [user]`
 Posts a message with a percentage between 0 and 100 marking how thottie the person is. If you don't mention anyone
 it'll be yourself.
 
@@ -127,7 +127,7 @@ Posts a image and message stating that the chat was killed.
 
 ### Good Job
 #### Command: `goodjob <user> [reason]` **OR** `gj <user> [reason]`
-Posts a image and message showing that you are congratualating the user you mentioned for doing a good job.
+Posts a image and message showing that you are congratulating the user you mentioned for doing a good job.
 
 ### Agree
 #### Command: `agree [user]`
