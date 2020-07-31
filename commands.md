@@ -185,7 +185,7 @@ Posts the your/the user you mentioned's name backwards.
 
 ### Silly Nickname Generator
 #### Command: `sillyname [user, staff only]`
-The bot will generate a random name from a list of words, then change your nickname to it. Staff can also add an 
+The bot will generate a random name from a list of words, then change your nickname to it. Staff can also add an
 extra parameter that mentions a user to change their nickname to something funny, this feature can only be used by staff.
 Please note: **THIS COMMAND WILL CHANGE YOUR NICKNAME**.
 
@@ -195,8 +195,8 @@ Generate a fun "red alert" embed with a optional reason included into it.
 
 ### Mega
 #### Command: `mega`
-Posts a word starting with `MEGA`, for example it could be `MEGASTUPID`. It picks from a random list of words. 
-If you don't get why this exists, it's because one of the staff member's real name is Megan, and this is a 
+Posts a word starting with `MEGA`, for example it could be `MEGASTUPID`. It picks from a random list of words.
+If you don't get why this exists, it's because one of the staff member's real name is Megan, and this is a
 insult-ish command for her.
 
 ### Tooth Fairy
@@ -205,7 +205,7 @@ Sends a simple message thanking you for your tooth and giving you a little money
 
 ### Fake Ban
 #### Command: `fakeban <user> [reason]`
-Sends a message with a countdown preparing to ban the user for the optionally provided reason. After the countdown 
+Sends a message with a countdown preparing to ban the user for the optionally provided reason. After the countdown
 is over it sends a message saying the ban succeded and then sends a DM to the user saying `Just Kidding!`.
 
 ### Emoji Message
@@ -256,7 +256,7 @@ Displays a wide range of information in regards to the user you mentioned.
 
 ### Outside User Info
 #### Command: `outsideuserinfo <user id>`
-Displays a bit of information in regards to the user whose user id you specified. This command is for people who are not in the server. 
+Displays a bit of information in regards to the user whose user id you specified. This command is for people who are not in the server.
 [How to Get User ID](https://discordia.me/en/developer-mode)
 
 ### Unit Conversion
@@ -312,15 +312,15 @@ to the user, there is no current way to prevent this.
 ### Custom User Message Send
 #### Command: `usersend <name> | <message> [| avatar url]`
 Send a message as a custom user with the name you specified. You can optionally add a url to a image to add
-a profile picture to the user. You can also attach a image as a file to use as the profile picture. For example a 
+a profile picture to the user. You can also attach a image as a file to use as the profile picture. For example a
 user without a profile picture would be `s!usersend Name | This is a message`, a example with a profile picture
-is `s!usersend Name | This is a message | https://example.org/example.png`. If you need to have an `|` in the 
-message then you can replace `|` with `\|`. For example `s!usersend Name | This is a \| straight line` would be sent as 
+is `s!usersend Name | This is a message | https://example.org/example.png`. If you need to have an `|` in the
+message then you can replace `|` with `\|`. For example `s!usersend Name | This is a \| straight line` would be sent as
 `This is a | straight line`.
 
 ### Calculate
 #### Command: `calculate <equation>`
-Calculates the equation you gave and returns the answer. It can use some Python built-in functions like `int()` but 
+Calculates the equation you gave and returns the answer. It can use some Python built-in functions like `int()` but
 such a feature is mostly not needed.
 
 ### Rules Reference
@@ -359,8 +359,8 @@ number in the range. The max number is default 100 if not specified.
 ### Death Battle
 #### Command: `deathbattle <user(1)> [user 2]`
 Have a battle to the death with the user you mentioned, or you can mention 2 users and have them battle or you can put
-two names (if there are spaces in the name you have to put quotation marks) and have them battle. 
-You will both take turns throwing random attacks at each other that could deal random amounts of damage 
+two names (if there are spaces in the name you have to put quotation marks) and have them battle.
+You will both take turns throwing random attacks at each other that could deal random amounts of damage
 ranging from 0 to 35. You will each have 100 health points. Who goes first is random.
 
 ### Minesweeper
@@ -397,7 +397,7 @@ Log a warning for the mentioned user and sends them a DM notifying them about th
 
 ### Mute
 #### Command `mute <user> [reason]`
-Prevent the specified user from messaging/speaking (and adding reactions) in any channel/voic channel and sends them a 
+Prevent the specified user from messaging/speaking (and adding reactions) in any channel/voice channel and sends them a
 DM notifying them about the mute with the reason (if applicable).
 
 ### Unmute
@@ -451,7 +451,7 @@ Posts a Question of the Day in the channel the command is run and automatically 
 ### Channel Message Count
 #### Command: `messagecount [count intensive channels]`
 ##### Permissions Required: `Staff`
-Will show you the number of messages sent in each channel. This may take more than 4 minutes due to the 
+Will show you the number of messages sent in each channel. This may take more than 4 minutes due to the
 sheer amount of messages that it has to process. In order to minimize the time that it takes to process,
 channels which don't really matter and have a lot of messages have been exluded from this count.
 For example channels like logs, bots, spam 101, etc. To include these message intensive channels, put
