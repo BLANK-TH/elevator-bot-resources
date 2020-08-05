@@ -1,0 +1,2 @@
+Author Name: SuhøBC | Author Nickname: h | Author ID: 725331242169532466 | Sent At: 2020-08-05 19:38 UTC | Channel Name: verify | Channel ID: 737093236803239977 | Message ID: 740655005203169390 | Message Content: S!verify
+Author Name: Elevator Logger | Author Nickname: MegaLogger (sl!) | Author ID: 733474240854097920 | Sent At: 2020-08-05 19:38 UTC | Channel Name: verify | Channel ID: 737093236803239977 | Message ID: 740655005459021835 | Message Content: The prefix `s!` needs to be lowercase.
