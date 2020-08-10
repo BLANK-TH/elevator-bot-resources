@@ -179,6 +179,10 @@ Posts a link to the celebrate good times song.
 #### Command: `fr` **OR** `finerant`
 Posts a link to the "i'm fine but not really fine" rant.
 
+### No One Cares
+#### Command: `noonecares` **OR** `nc` 
+Posts a link to the "no one cares" movie intro.
+
 ### Backwards Name
 #### Command: `backwardsname [user]` **OR** `backname [user]` **OR** `bn [user]`
 Posts the your/the user you mentioned's name backwards.
@@ -213,6 +217,14 @@ is over it sends a message saying the ban succeded and then sends a DM to the us
 Convert the letters and numbers of the message specified into emojis then sends it. Note that if the number of
 letters multiplyed by 22 (`number_of_letters*22`) is more than 2000, then the message won't be able to be sent
 and the bot will respond back with an error.
+
+### Headsmash
+#### Command: `headsmash` **OR** `hs`
+Send a random string of characters that emulate a headsmash on a keyboard as the bot.
+
+### Headsmash User
+#### Command: `headsmashuser` **OR** `hsu`
+Send a random string of characters that emulate a headsmash on a keyboard as you.
 
 [//]: # (new fun commands goes here)
 
