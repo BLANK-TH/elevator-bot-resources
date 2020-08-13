@@ -187,6 +187,10 @@ Posts a link to the "i'm fine but not really fine" rant.
 #### Command: `noonecares` **OR** `nc` 
 Posts a link to the "no one cares" movie intro.
 
+### Ping Music
+#### Command: `pingmusic`
+Posts a link to the song called `Ping` made by Exyl.
+
 ### Backwards Name
 #### Command: `backwardsname [user]` **OR** `backname [user]` **OR** `bn [user]`
 Posts the your/the user you mentioned's name backwards.
@@ -239,6 +243,10 @@ will not end well
 ### Brain Size Calculator
 #### Command: `smallbrain [user]`
 Calculate the user's brain size. If no user was provided, the default is yourself.
+
+### Command Ideas
+#### Command: `commandidea` **OR** `ci`
+Posts a image to the `I am once again asking for command ideas` meme.
 
 [//]: # (new fun commands goes here)
 
