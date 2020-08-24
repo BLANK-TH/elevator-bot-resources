@@ -1,0 +1,24 @@
+If you break a rule (unless otherwise specified on the rule itself), you will get either a warning, a mute, a shadow (explained further down), a tempban or a ban. Any step in the strike system can be bypassed at any time by the Staff.
+
+This is the generic strike system:
+`1.` Warning #1
+`2.` Warning #2
+`3.` Official (Personal) Warning by the Staff
+`4.` Mute/Shadow
+`5.` Tempban/Permban
+
+A "shadow" essentially revokes all permissions to view or write in any channel except an "interrogation" channel for talking to the Staff and the rules channel for reference. This may be used to give a formal warning, or just to talk to Staff in private. (It could even be a good thing, for example a promotion).
+
+Do not try and delete a message thinking no-one will see it. There are logs and Staff (at least me) actively monitor it.
+
+Staff may be exempt from certain rules (but staff definitely have to follow rule 4).
+
+**The rules may be changed at any time** without notice by Staff, `I didn't see that you changed it` and other excuses similar to that will be ignored. It is your responsibility to ensure that you stay up to date with the rules.
+
+If you would like to appeal any formal punishment, you can message one of the Staff members or send me (BLANK) an email at `blankdev.th@gmail.com`. Generally if you're in the server, you should send a DM instead of an email, the email is to be used if you got kicked or banned.
+
+If you would like to report someone you can use the report command, the general formatting is `s!report <user> <reason>`. More information about this command here: https://github.com/BLANK-TH/elevator-bot-resources/blob/info/commands.md#report-a-user
+
+--
+
+That's all, we hope you have fun!
