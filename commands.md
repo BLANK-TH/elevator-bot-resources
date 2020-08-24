@@ -127,6 +127,11 @@ Posts a image and message showing that you are insulting the user you mentioned.
 #### Command: `mock <phrase>`
 Posts the message back with random capitalisation and a GIF mocking it.
 
+### Sarcasm
+#### Command: `sarcasm <phrase>`
+Posts the message back with alternating capitalization on the letters of the sentence. The letter `i` is skipped as a
+capital `i` looks weird in the sentence.
+
 ### Rank Thot
 #### Command: `rankthot [user]`
 Posts a message with a percentage between 0 and 100 marking how thottie the person is. If you don't mention anyone
@@ -291,6 +296,10 @@ Asks the 8 Ball a question.
 ### Dice
 #### Command: `dice [maximum number]`
 Rolls a dice, default maximum is 6.
+
+### Choose
+#### Command: `choose <options>`
+Choose one of the provided options. Separate options by space, use `"` if you need to put an option with spaces. 
 
 ### Flip a Coin
 #### Command: `flipacoin` **OR** `fac`
