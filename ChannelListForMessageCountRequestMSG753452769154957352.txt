@@ -1,0 +1,44 @@
+Total: 73090
+staffroom : 3233
+programming-chat : 965
+rules : 4
+inv : 2
+announcements : 39
+birthdays : 13
+verify : 2
+interrogation : 0
+colours : 21
+self-roles : 10
+polls : 27
+active-chat : 448
+active-bot : 0
+🌱-talk : 46206
+🌿-kpop : 6384
+🍃-anime : 2203
+🌴-tv-shows : 255
+🐉-gaming : 671
+🌵-journaling : 1586
+🎋-fanart : 417
+⏱-counting : 1786
+one-word-story : 623
+question-of-the-day : 46
+trophy-room : 22
+streaks : 30
+other-languages : 270
+bot-updates : 144
+irl-pictures : 415
+🏙-kpop-idols-fem : 166
+🌃-kpop-idols-male : 420
+🌆-anime-bois : 190
+🌌-anime-gorls : 97
+🏞-animals : 481
+music : 332
+positive-things-owo : 265
+memes : 180
+venting : 3098
+suggestions : 22
+💦-nsfw : 801
+no-mic : 1216
+
+
+Excluded Channel IDs: 725438062296826027, 725085898160734271, 685918906564608055, 733442253669793902, 688457344664731649, 695741363244761139, 723275389115564133, 735895556093902911, 685932859097350160, 686693349545213977
