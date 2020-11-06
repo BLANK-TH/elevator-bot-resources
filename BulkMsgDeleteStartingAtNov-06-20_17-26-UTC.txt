@@ -1,9 +1,0 @@
-Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-11-06 17:26:41 UTC | Channel Name: log-hell | Channel ID: 725438062296826027 | Message ID: 774323887776596021 | Message Content: pls diable rob
-Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-11-06 17:26:44 UTC | Channel Name: log-hell | Channel ID: 725438062296826027 | Message ID: 774323900188327996 | Message Content: pls disable rob
-Author Name: Dank Memer | Author Nickname: Dank Memer (pls) | Author ID: 270904126974590976 | Sent At: 2020-11-06 17:26:44 UTC | Channel Name: log-hell | Channel ID: 725438062296826027 | Message ID: 774323903274549259 | Message Content: The following commands/categories have been disabled successfully:
-
-`steal`
-Author Name: BLANK | Author Nickname: None | Author ID: 616032766974361640 | Sent At: 2020-11-06 17:26:46 UTC | Channel Name: log-hell | Channel ID: 725438062296826027 | Message ID: 774323910778814465 | Message Content: pls disable bankrob
-Author Name: Dank Memer | Author Nickname: Dank Memer (pls) | Author ID: 270904126974590976 | Sent At: 2020-11-06 17:26:47 UTC | Channel Name: log-hell | Channel ID: 725438062296826027 | Message ID: 774323913441673247 | Message Content: The following commands/categories have been disabled successfully:
-
-`bankrob`
