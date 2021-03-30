@@ -1,0 +1,18 @@
+Hello "Staff" (meaning those of you who have the <@&725082640507469845> role but aren't the owner or <@&685936852070301743> ). This is a new system introduced by the Staff (yes the real ones) that grants you access to an extra channel (this one) and a few select commands. Those commands are:
+```md
+- s!warn
+- s!vote
+- s!questionoftheday
+- s!shadow
+- s!unshadow
+- s!mute
+- s!unmute
+- s!promoteactive
+```
+(and `s!archive` but that will crash the bot so don't touch it)
+The only ones you really need to know about and be able to use are `s!warn`, `s!mute`, `s!shadow` (and the unmute/unshadow ones). In the simplest explanation possible that anyone (including Megans) can understand, `s!mute` allows you to prevent a user from being able to send messages in any channel. The signature (how to use it) of the command is `s!mute <ping user here> [optional reason here]` (e.g. s!mute <@!639960189377708047> you're stupid). Obviously `s!unmute` will unmute them. `s!shadow` is a special variant of `s!mute` that allows the user access to a special channel (that you won't be able to see) to talk with staff, you *generally* won't need to use this as if/when staff want to talk with them, we'll shadow them manually 
+ but if you do, the signature is the same as `s!mute` but with the word `mute` replaced with `shadow` -- and of course, `s!unshadow` will unshadow them. The other command you should know about is `s!warn`, the signature of it is `s!warn <ping user here> <reason>` (e.g. s!warn <@!639960189377708047> stop being an idiot). All this command does is send a warning to the user and log it in our system.
+
+This should be used if any raiding incidents were to occur and no staff are present online, or if a user is misbehaving. Use your own reasonable judgement and common sense on which to employ, there are no "strict" guidelines per-se.
+
+**It should go without saying but, any attempt to misuse this system will result in severe consequences**
